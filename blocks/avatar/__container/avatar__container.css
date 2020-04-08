@@ -1,0 +1,3 @@
+.avatar__container {
+    padding: calc(var(--s0) / 4) var(--s0);
+}

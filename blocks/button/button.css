@@ -1,0 +1,18 @@
+@import url('./_edit/button_edit.css');
+@import url('./_add/button_add.css');
+@import url('./_submit/button_submit.css');
+@import url('./__icon/button__icon.css');
+
+.button {
+    border: 1px solid var(--color-light);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    border-color: var(--color-lightish);
+}
+
+.button:hover .button__icon {
+    fill: var(--color-lightish);
+}

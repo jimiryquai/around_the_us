@@ -1,0 +1,6 @@
+@import url('./_add/button__icon_add.css');
+@import url('./_edit/button__icon_edit.css');
+
+.button__icon {
+    fill: var(--color-light);
+}

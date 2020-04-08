@@ -1,0 +1,12 @@
+.button_submit {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border-color: transparent;
+    width: 100%;
+    padding: var(--s0) 0;
+    margin-top: var(--s0);
+}
+
+.button_submit:hover {
+    background-color: var(--color-darkish);
+}

@@ -1,0 +1,19 @@
+.form__input {
+    font-family: inherit;
+    color: var(--color-dark);
+    padding: .5rem 0;
+    width: 100%;
+    border-radius: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--color-midish);
+    display: block;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+
+  .form__input::-webkit-input-placeholder {
+    color: var(--color-midish);
+  }
+  

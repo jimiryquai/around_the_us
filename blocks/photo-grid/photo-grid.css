@@ -1,0 +1,20 @@
+@import url('./__item/photo-grid__item.css');
+@import url('./__image/photo-grid__image.css');
+@import url('./__content/photo-grid__content.css');
+@import url('./__title//photo-grid__title.css');
+
+
+/*
+  AUTO GRID
+  Set the minimum item size with `--auto-grid-min-size` and you'll
+  get a fully responsive grid with no media queries.
+*/
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 282px), 1fr));
+    grid-gap: 1rem;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }

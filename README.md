@@ -15,7 +15,7 @@ This project makes use of the following technologies:
 
 The website is fully resonsive and it's appearance corresponds (within a margin of error of 30px) with this [Figma Design](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1).
 
-The website is deployed on [Github Pages] (https://jimiryquai.github.io/around_the_us/).
+The website is deployed on [Github Pages](https://jimiryquai.github.io/around_the_us/).
 
 
 ### Deployment & System Requirements

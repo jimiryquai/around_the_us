@@ -1,6 +1,14 @@
 .profile__name {
     font-weight: var(--font-medium);
+    font-size: var(--s1);
     margin-right: 12px;
+}
+
+@media (min-width: 817px) {
+    .profile__name{
+        font-size: 32px;
+        margin-right: 18px;
+    }
 }
 
 @media (min-width: 1200px) {

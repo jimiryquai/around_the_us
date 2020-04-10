@@ -1,2 +1,5 @@
-@import url('./__container/avatar__container.css');
 @import url('./__img/avatar__img.css');
+
+.avatar {
+    padding: calc(var(--s0) / 4) var(--s0);
+}

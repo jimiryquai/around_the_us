@@ -1,5 +1,11 @@
-let editButton = document.querySelector('.button_edit');
-let closeButton = document.querySelector('.popup__close');
+const editButton = document.querySelector('.button_edit');
+const closeButton = document.querySelector('.popup__close');
+// get and set form values
+const formElement = document.querySelector('.form');
+const nameInput = formElement.querySelector('#name');
+const jobInput = formElement.querySelector('#job');
+const name = document.querySelector('.profile__name');
+const job = document.querySelector('.profile__job');
 
 // Toggles class of popup_opened
 function popupToggle() {
@@ -10,12 +16,6 @@ function popupToggle() {
 editButton.addEventListener("click", popupToggle);
 closeButton.addEventListener("click", popupToggle);
 
-// get and set form values
-let formElement = document.querySelector('.form');
-let nameInput = formElement.querySelector('#name');
-let jobInput = formElement.querySelector('#job');
-let name = document.querySelector('.profile__name');
-let job = document.querySelector('.profile__job');
 
 function formLoadHandler() {
     let nameText = name.textContent;

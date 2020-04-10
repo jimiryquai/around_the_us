@@ -12,7 +12,3 @@
 .button:hover {
     border-color: var(--color-lightish);
 }
-
-.button:hover .button__icon {
-    fill: var(--color-lightish);
-}

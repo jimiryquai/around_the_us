@@ -1,6 +1,5 @@
 :root {
     line-height: var(--ratio);
-    font-size: calc(0.333vw + 1em);
     font-weight: var(--font-normal);
     font-family: var(--font-plain);
     background-color: var(--color-dark);

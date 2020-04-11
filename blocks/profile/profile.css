@@ -5,9 +5,9 @@
 .profile {
     display: flex;
     flex-flow: row wrap;
+    max-width: 16.875rem;
     justify-content: center;
     margin-top: var(--s3);
-    max-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -21,7 +21,7 @@
     margin-top: var(--s0);
   }
 
-  @media (min-width: 817px) {
+  @media (min-width: 50em) {
     .profile {
     justify-content: space-between;
     max-width: 100%;

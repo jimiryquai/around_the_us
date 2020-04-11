@@ -27,11 +27,4 @@
     --s4: calc(var(--s0) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio));
     --s5: calc(var(--s0) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio));
 
-    /* Measure */
-    --measure: 65ch;
-
-    /* Line height */
-    --line-height: var(--ratio);
-    --line-height-small: calc(0.8 * var(--ratio));
-
 }

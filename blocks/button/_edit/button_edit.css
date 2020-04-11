@@ -3,6 +3,8 @@
     height: 1.125rem;
     margin-top: 0;
     font-size: 0;
+    background: url(../../../images/edit-icon.svg) .46875rem no-repeat;
+    background-position: center;
 }
 
 @media (min-width: 50em) {

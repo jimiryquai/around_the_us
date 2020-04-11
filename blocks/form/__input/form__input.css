@@ -11,6 +11,9 @@
     display: block;
     -webkit-transition: all .3s;
     transition: all .3s;
+    font-size: .875rem;
+    line-height: 1.0625rem;
+    margin-top: 1.875rem;
   }
 
   .form__input::-webkit-input-placeholder {

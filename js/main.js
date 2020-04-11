@@ -2,8 +2,8 @@ const editButton = document.querySelector('.button_edit');
 const closeButton = document.querySelector('.popup__close');
 // get and set form values
 const formElement = document.querySelector('.form');
-const nameInput = formElement.querySelector('#name');
-const jobInput = formElement.querySelector('#job');
+const nameInput = formElement.querySelector('.form__input_name');
+const jobInput = formElement.querySelector('.form__input_job');
 const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
 

@@ -4,9 +4,9 @@
 
 .profile {
     display: flex;
-    flex-flow: row wrap;
-    max-width: 16.875rem;
-    justify-content: center;
+    flex-direction: column;
+    max-width: 17.625rem;
+    align-items: center;
     margin-top: var(--s3);
     margin-left: auto;
     margin-right: auto;
@@ -23,6 +23,7 @@
 
   @media (min-width: 50em) {
     .profile {
+    flex-flow: row wrap;
     justify-content: space-between;
     max-width: 100%;
     align-items: center;

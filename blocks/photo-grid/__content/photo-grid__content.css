@@ -4,13 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--s1);
+    padding: var(--s1) var(--s0);
     border-radius: 0 0 20px 20px;
     white-space: nowrap;
-}
-
-@media (min-width: 1200px) {
-    .photo-grid__content {
-        font-size: 19px;
-    }
 }

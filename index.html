@@ -28,7 +28,7 @@
             </div>
             <section class="gallery">
                 <ul class="photo-grid">
-                    <li class="photo-grid__item">
+                    <!-- <li class="photo-grid__item">
                         <img src="./images/yosemite.jpg" alt="yosemite valley" class="photo-grid__image">
                         <div class="photo-grid__content">
                             <h3 class="photo-grid__title">Yosemite Valley</h3>
@@ -69,7 +69,7 @@
                             <h3 class="photo-grid__title">Lago Di Braies</h3>
                             <button class="button button_heart"></button>
                         </div>
-                    </li>
+                    </li> -->
                 </ul> 
             </section>
         </main>
@@ -93,5 +93,15 @@
         </div>
     </div>
     <script src="./js/main.js"></script>
+    <template id="card-template">
+        <li class="photo-grid__item">
+            <button class="button button_trash"></button>
+            <img src="" alt="" class="photo-grid__image">
+            <div class="photo-grid__content">
+                <h3 class="photo-grid__title"></h3>
+                <button class="button button_heart"></button>
+            </div>
+        </li>
+    </template>
 </body>
 </html>

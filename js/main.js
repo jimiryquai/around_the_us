@@ -1,11 +1,62 @@
 const editButton = document.querySelector('.button_edit');
 const closeButton = document.querySelector('.popup__close');
 // get and set form values
+const cardsContainer = document.querySelector(".photo-grid");
 const formElement = document.querySelector('.form');
 const nameInput = formElement.querySelector('.form__input_name');
 const jobInput = formElement.querySelector('.form__input_job');
 const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
+// Initial card values
+const initialCards = [
+    {
+        name: "Yosemite Valley",
+        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+        name: "Lake Louise",
+        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+        name: "Bald Mountains",
+        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+        name: "Vanois National Park",
+        link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
+];
+//Build card
+
+function buildCard () {
+    const cardTemplate = document.querySelector('#card-template').content;
+    const cardElement = cardTemplate.cloneNode(true);
+    cardElement.querySelector(".photo-grid__image").src = initialCards.link;
+    cardElement.querySelector(".photo-grid__title").textContent = initialCards.name;
+    cardsContainer.append(cardElement);
+}
+
+// Add six initial cards on load
+window.onload = (event) => {
+    initialCards.forEach(function (item) {
+        const cardTemplate = document.querySelector('#card-template').content;
+        const cardElement = cardTemplate.cloneNode(true);
+        const cardImage = cardElement.querySelector(".photo-grid__image");
+        const cardTitle =  cardElement.querySelector(".photo-grid__title");
+        cardImage.src = item.link;
+        cardImage.alt = item.name;
+        cardTitle.textContent = item.name;
+        cardsContainer.append(cardElement);
+    });
+  };
 
 // Toggles class of popup_opened
 function popupToggle() {

@@ -8,8 +8,6 @@
             box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     opacity: 1;
-    /* -webkit-transform: translate(-50%, -50%) scale(0.25);
-            transform: translate(-50%, -50%) scale(0.25); */
     -webkit-transition: all .5s .2s;
     transition: all .5s .2s;
   }

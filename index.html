@@ -28,48 +28,6 @@
             </div>
             <section class="gallery">
                 <ul class="photo-grid">
-                    <!-- <li class="photo-grid__item">
-                        <img src="./images/yosemite.jpg" alt="yosemite valley" class="photo-grid__image">
-                        <div class="photo-grid__content">
-                            <h3 class="photo-grid__title">Yosemite Valley</h3>
-                            <button class="button button_heart"></button>
-                        </div>
-                    </li>
-                    <li class="photo-grid__item">
-                        <img src="./images/lake-louise.png" alt="lake louise" class="photo-grid__image">
-                        <div class="photo-grid__content">
-                            <h3 class="photo-grid__title">Lake Louise</h3>
-                            <button class="button button_heart"></button>
-                        </div>
-                    </li>
-                    <li class="photo-grid__item">
-                        <img src="./images/bald-mountains.png" alt="bald mountains" class="photo-grid__image">
-                        <div class="photo-grid__content">
-                            <h3 class="photo-grid__title">Bald Mountains</h3>
-                            <button class="button button_heart"></button>
-                        </div>
-                    </li>
-                    <li class="photo-grid__item">
-                        <img src="./images/latemar.png" alt="latemar" class="photo-grid__image">
-                        <div class="photo-grid__content">
-                            <h3 class="photo-grid__title">Latemar</h3>
-                            <button class="button button_heart"></button>
-                        </div>
-                    </li>
-                    <li class="photo-grid__item">
-                        <img src="./images/vanois.png" alt="vanois national park" class="photo-grid__image">
-                        <div class="photo-grid__content">
-                            <h3 class="photo-grid__title">Vanois National Park</h3>
-                            <button class="button button_heart"></button>
-                        </div>
-                    </li>
-                    <li class="photo-grid__item">
-                        <img src="./images/lago-di-braies.png" alt="a boat on a lake" class="photo-grid__image">
-                        <div class="photo-grid__content">
-                            <h3 class="photo-grid__title">Lago Di Braies</h3>
-                            <button class="button button_heart"></button>
-                        </div>
-                    </li> -->
                 </ul> 
             </section>
         </main>
@@ -77,21 +35,33 @@
             <p class="footer__copyright">&copy; James Ryan 2020</p>
         </footer>
         <div class="popup">
-            <div class="popup__container">
-                  <button class="popup__close"></button>    
+            <div class="popup__dialog popup__dialog_edit">
+                <button class="popup__close popup__close_edit"></button>    
+              <h2 class="content-title">
+                  Edit profile
+              </h2>
+              <form class="form form_edit">
+                  <label class="form__label">Full Name</label>
+                  <input type="text" class="form__input form__input_name" name="name" placeholder="Name" required>
+                  <label class="form__label">About Me</label>
+                  <input type="text" class="form__input form__input_job" name="job" placeholder="About Me" required>
+                  <button class="button button_submit" type="submit">Save</button>
+              </form>
+            </div>
+            <div class="popup__dialog popup__dialog_add">
+                <button class="popup__close popup__close_add"></button>    
                 <h2 class="content-title">
-                    Edit profile
+                New Place
                 </h2>
-                <form class="form">
-                    <label class="form__label">Full Name</label>
-                    <input type="text" class="form__input form__input_name" name="name" placeholder="Name" required>
-                    <label class="form__label">About Me</label>
-                    <input type="text" class="form__input form__input_job" name="job" placeholder="About Me" required>
+                <form class="form form_add">
+                    <label class="form__label">Title</label>
+                    <input type="text" class="form__input form__input_title" name="title" placeholder="Title" required>
+                    <label class="form__label">Image URL</label>
+                    <input type="text" class="form__input form__input_url" name="url" placeholder="Image URL" required>
                     <button class="button button_submit" type="submit">Save</button>
                 </form>
             </div>
         </div>
-    </div>
     <script src="./js/main.js"></script>
     <template id="card-template">
         <li class="photo-grid__item">

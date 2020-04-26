@@ -139,6 +139,12 @@ document.addEventListener('click', function (evt) {
     }
 }, false);
 
+document.addEventListener('click', function (evt) {
+    if ( evt.target.classList.contains( 'button_trash' ) ) {
+        evt.target.parentElement.remove()
+    }
+}, false);
+
 //Edit form submission listeners
 editForm.addEventListener('submit', editFormSubmit);
 editForm.addEventListener('submit', popupToggle);

@@ -101,6 +101,12 @@ function editFormSubmit (evt) {
     job.textContent = jobInput.value;
 }
 
+document.addEventListener('click', function (evt) {
+    if ( evt.target.classList.contains( 'button_heart' ) ) {
+        evt.target.classList.toggle('button_heart_liked');
+    }
+}, false);
+
 //Perform multiple actions on edit button click
 //https://gomakethings.com/attaching-multiple-elements-to-a-single-event-listener-in-vanilla-js/
 document.addEventListener('click', function (evt) {

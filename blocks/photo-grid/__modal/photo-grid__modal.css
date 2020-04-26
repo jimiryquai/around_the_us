@@ -1,0 +1,9 @@
+@import url('./_visible/photo-grid__modal_visible.css');
+
+.photo-grid__modal {
+    visibility: hidden;
+    display: none;
+    max-width: 75vw;
+    max-height: 75vh;
+    position: relative;
+}

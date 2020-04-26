@@ -1,3 +1,5 @@
+@import url('./_visible/popup__dialog_visible.css');
+
 .popup__dialog {
     visibility: hidden;
     padding: var(--s1);

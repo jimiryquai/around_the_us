@@ -158,7 +158,7 @@ function addFormCreate () {
     urlInput.required = true;
     submitButton.classList.add('button', 'button_submit');
     submitButton.type = "submit";
-    submitButton.textContent = "Save";
+    submitButton.textContent = "Create";
     form.append(titleLabel, titleInput, urlLabel, urlInput, submitButton);
     dialog.append(closeButton, header, form);
     popup.append(dialog);
@@ -197,24 +197,24 @@ function addFormClear () {
 function createImageModal() {
     const title =  document.querySelector('.photo-grid__title');
     const img = document.querySelector('.photo-grid__image');
-    const imgSrc = img.src;
     const close = document.createElement("button");
     const figure = document.createElement("figure"); 
     const imgModal = document.createElement("img");
     const caption = document.createElement("figcaption");
-    figure.classList.add('photo-grid__modal');
+    figure.classList.add('popup__modal');
     close.classList.add('popup__close', 'popup__close_modal');
-    imgModal.classList.add('photo-grid__image', 'photo-grid__image_modal');
-    imgModal.src += imgSrc;
+    imgModal.classList.add('popup__modal-image');
+    imgModal.src = img.src;
+    imgModal.alt = img.alt;
     caption.textContent = title.textContent;
-    figure.append(close, img, caption);
+    figure.append(close, imgModal, caption);
     popup.append(figure);
 }
 
 //Toggle modal visibility
 function imageModalVisibility () {
-    const imgModal = popup.querySelector('.photo-grid__modal');
-    imgModal.classList.toggle('photo-grid__modal_visible');
+    const imgModal = popup.querySelector('.popup__modal');
+    imgModal.classList.toggle('popup__modal_visible');
 }
 
 // End of Image modal functions //////////////////////////////////////////

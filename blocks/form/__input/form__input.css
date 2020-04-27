@@ -13,7 +13,7 @@
     transition: all .3s;
     font-size: .875rem;
     line-height: 1.0625rem;
-    margin-top: 1.875rem;
+    margin-top: .75rem;
   }
 
   .form__input::-webkit-input-placeholder {

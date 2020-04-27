@@ -1,5 +1,6 @@
 @import url('./__dialog/popup__dialog.css');
 @import url('./__close/popup__close.css');
+@import url('./__modal/popup__modal.css');
 @import url('./_opened/popup_opened.css');
 
 .popup {

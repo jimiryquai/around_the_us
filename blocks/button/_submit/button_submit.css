@@ -3,10 +3,10 @@
     color: var(--color-light);
     border-color: transparent;
     width: 100%;
-    padding: var(--s0) 0;
-    margin-top: 3rem;
-    font-size: 1.125rem;
-    line-height: 1.375rem;
+    height: 2.5rem;
+    margin-top: 2.25rem;
+    font-size: .875rem;
+    line-height: 1.0625rem;
 }
 
 .button_submit:hover {

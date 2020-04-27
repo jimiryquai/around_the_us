@@ -3,9 +3,9 @@
     background-position: center;
     position: absolute;
     top: -2rem;
-    right: -.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    right: -2rem;
+    width: 1.875rem;
+    height: 1.875rem;
     display: inline-block;
     -webkit-transition: all .2s;
     transition: all .2s;

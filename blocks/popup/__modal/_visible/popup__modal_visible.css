@@ -1,0 +1,4 @@
+.popup__modal.popup__modal_visible {
+    visibility: visible;
+    display: block;
+}

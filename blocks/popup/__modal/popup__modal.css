@@ -1,12 +1,15 @@
-@import url('./_visible/popup__modal_visible.css');
-@import url('./__modal-image/popup__modal-image.css');
+@import url('./_type/popup__modal_type_image.css');
+@import url('./_type/popup__modal_type_form.css');
 
 .popup__modal {
-    visibility: hidden;
-    display: none;
     position: relative;
-    width: 15rem;
-    height: 18.6875rem;
-    max-width: 75vw;
-    max-height: 75vh;
-}
+    opacity: 1;
+    -webkit-transition: all .5s .2s;
+    transition: all .5s .2s;
+  }
+
+  @media (min-width: 31.25em) {
+        .popup__modal {
+            height: 20.625rem;
+        }
+    }

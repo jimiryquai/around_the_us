@@ -1,0 +1,9 @@
+.popup__modal_type_form {
+    padding: var(--s1) var(--s1) var(--s2);
+    min-width: 15rem;
+    max-width: 26.875rem;
+    background-color: var(--color-light);
+    -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}

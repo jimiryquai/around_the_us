@@ -1,0 +1,9 @@
+@import url('./_visible/popup__modal_visible.css');
+@import url('./__modal-image/popup__modal-image.css');
+
+.popup__modal_type_image {
+    width: 15rem;
+    height: 18.6875rem;
+    max-width: 75vw;
+    max-height: 75vh;
+}

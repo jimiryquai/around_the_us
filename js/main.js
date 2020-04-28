@@ -6,14 +6,14 @@ const editForm = editPopup.querySelector('.form_type_edit');
 const editClose = editPopup.querySelector('.popup__close_type_edit');
 const nameInput = editForm.querySelector('.form__input_name');
 const jobInput = editForm.querySelector('.form__input_job');
-const name = document.querySelector('.profile__name');
-const job = document.querySelector('.profile__job');
+const name = editForm.querySelector('.profile__name');
+const job = editForm.querySelector('.profile__job');
 
 const addPopup = document.querySelector('.popup_type_add');
 const addForm = addPopup.querySelector('.form_type_add');
 const addClose = addPopup.querySelector('.popup__close_type_add');
-const titleInput = addPopup.querySelector('.form__input_title');
-const urlInput = addPopup.querySelector('.form__input_url');
+const titleInput = addForm.querySelector('.form__input_title');
+const urlInput = addForm.querySelector('.form__input_url');
 
 const imgPopup = document.querySelector('.popup_type_image');
 const imgClose = imgPopup.querySelector('.popup__close_type_image');
@@ -21,7 +21,6 @@ const imgModal = imgPopup.querySelector('.popup__image');
 const caption = imgPopup.querySelector('.popup__caption');
 
 const cardsContainer = document.querySelector('.photo-grid');
-const cardImage = cardsContainer.querySelector('.photo-grid__image');
 const initialCards = [
     {
         name: "Yosemite Valley",
@@ -93,7 +92,7 @@ function editFormSubmit (evt) {
     togglePopup(editPopup);
 }
 
-// Add form functions
+// Add form functionsRe
 //Form submit handler
 function addFormSubmit (evt) {
     evt.preventDefault(); 
@@ -121,17 +120,12 @@ function addFormClear () {
 
 //Create modal
 function renderImgModal() {
-    const title = document.querySelector('.photo-grid__title');
-    const img = document.querySelector('.photo-grid__image');
+    const title = cardsContainer.querySelector('.photo-grid__title');
+    const img = cardsContainer.querySelector('.photo-grid__image');
     const imgModal = imgPopup.querySelector('.popup__image');
     imgModal.src = img.src;
     imgModal.alt = img.alt;
     caption.textContent = title.textContent;
-}
-
-function clearImgModal () {
-    imgModal.src = "";
-    imgModal.alt = ""; 
 }
 
 // // End of Image modal functions //////////////////////////////////////////
@@ -150,14 +144,14 @@ addButton.addEventListener('click', function (evt) {
     }
 }, false);
 
-document.addEventListener('click', function (evt) {
+cardsContainer.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'photo-grid__image' ) ) {
         togglePopup(imgPopup);
         renderImgModal();
     }
 }, false);
 
-document.addEventListener('click', function (evt) {
+cardsContainer.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'button_heart' ) ) {
         evt.target.classList.toggle('button_heart_liked');
     }
@@ -180,11 +174,10 @@ addClose.addEventListener('click', function (evt) {
 imgClose.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'popup__close_type_image' ) ) {
         togglePopup(imgPopup);
-        clearImgModal();
     }
 }, false);
 
-document.addEventListener('click', function (evt) {
+cardsContainer.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'button_trash' ) ) {
         evt.target.parentElement.remove()
     }

@@ -4,16 +4,12 @@ const addButton = document.querySelector('.button_add');
 const editPopup = document.querySelector('.popup_type_edit');
 const editForm = editPopup.querySelector('.form_type_edit');
 const editClose = editPopup.querySelector('.popup__close_type_edit');
-const nameInput = editForm.querySelector('.form__input_name');
-const jobInput = editForm.querySelector('.form__input_job');
-const name = editForm.querySelector('.profile__name');
-const job = editForm.querySelector('.profile__job');
 
 const addPopup = document.querySelector('.popup_type_add');
 const addForm = addPopup.querySelector('.form_type_add');
 const addClose = addPopup.querySelector('.popup__close_type_add');
-const titleInput = addForm.querySelector('.form__input_title');
-const urlInput = addForm.querySelector('.form__input_url');
+const titleInput = addPopup.querySelector('.form__input_title');
+const urlInput = addPopup.querySelector('.form__input_url');
 
 const imgPopup = document.querySelector('.popup_type_image');
 const imgClose = imgPopup.querySelector('.popup__close_type_image');
@@ -80,6 +76,10 @@ function togglePopup(popup) {
 
 //Populate input elements on edit form
 function renderEditForm() {
+    const nameInput = document.querySelector('.form__input_name');
+    const jobInput = document.querySelector('.form__input_job');
+    const name = document.querySelector('.profile__name');
+    const job = document.querySelector('.profile__job');
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
 }
@@ -87,6 +87,10 @@ function renderEditForm() {
 //Submit edit form
 function editFormSubmit (evt) {
     evt.preventDefault(); 
+    const nameInput = document.querySelector('.form__input_name');
+    const jobInput = document.querySelector('.form__input_job');
+    const name = document.querySelector('.profile__name');
+    const job = document.querySelector('.profile__job');
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
     togglePopup(editPopup);
@@ -119,7 +123,7 @@ function addFormClear () {
 // // Image modal functions //////////////
 
 //Create modal
-function renderImgModal() {
+function renderImgModal(evt) {
     const title = cardsContainer.querySelector('.photo-grid__title');
     const img = cardsContainer.querySelector('.photo-grid__image');
     const imgModal = imgPopup.querySelector('.popup__image');
@@ -131,20 +135,20 @@ function renderImgModal() {
 // // End of Image modal functions //////////////////////////////////////////
 
 //Perform multiple actions on edit button click
-editButton.addEventListener('click', function (evt) {
+document.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'button_edit' ) ) {
         togglePopup(editPopup);
         renderEditForm();
     }
 }, false);
 
-addButton.addEventListener('click', function (evt) {
+document.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'button_add' ) ) {
         togglePopup(addPopup);
     }
 }, false);
 
-cardsContainer.addEventListener('click', function (evt) {
+document.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'photo-grid__image' ) ) {
         togglePopup(imgPopup);
         renderImgModal();
@@ -157,13 +161,13 @@ cardsContainer.addEventListener('click', function (evt) {
     }
 }, false);
 
-editClose.addEventListener('click', function (evt) {
+document.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'popup__close_type_edit' ) ) {
         togglePopup(editPopup);
     }
 }, false);
 
-addClose.addEventListener('click', function (evt) {
+document.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'popup__close_type_add' ) ) {
         togglePopup(addPopup);
         addFormClear();
@@ -184,6 +188,6 @@ cardsContainer.addEventListener('click', function (evt) {
 }, false);
 
 // //Form submission listeners
-editForm.addEventListener('submit', editFormSubmit);
-addForm.addEventListener('submit', addFormSubmit);
-addForm.addEventListener('submit', addFormClear);
+document.addEventListener('submit', editFormSubmit);
+document.addEventListener('submit', addFormSubmit);
+document.addEventListener('submit', addFormClear);

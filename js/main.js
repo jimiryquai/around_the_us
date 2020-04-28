@@ -17,8 +17,11 @@ const urlInput = addPopup.querySelector('.form__input_url');
 
 const imgPopup = document.querySelector('.popup_type_image');
 const imgClose = imgPopup.querySelector('.popup__close_type_image');
+const imgModal = imgPopup.querySelector('.popup__image');
+const caption = imgPopup.querySelector('.popup__caption');
 
 const cardsContainer = document.querySelector('.photo-grid');
+const cardImage = cardsContainer.querySelector('.photo-grid__image');
 const initialCards = [
     {
         name: "Yosemite Valley",
@@ -121,10 +124,14 @@ function renderImgModal() {
     const title = document.querySelector('.photo-grid__title');
     const img = document.querySelector('.photo-grid__image');
     const imgModal = imgPopup.querySelector('.popup__image');
-    const caption = imgPopup.querySelector('.popup__caption');
     imgModal.src = img.src;
     imgModal.alt = img.alt;
     caption.textContent = title.textContent;
+}
+
+function clearImgModal () {
+    imgModal.src = "";
+    imgModal.alt = ""; 
 }
 
 // // End of Image modal functions //////////////////////////////////////////
@@ -173,6 +180,7 @@ addClose.addEventListener('click', function (evt) {
 imgClose.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'popup__close_type_image' ) ) {
         togglePopup(imgPopup);
+        clearImgModal();
     }
 }, false);
 

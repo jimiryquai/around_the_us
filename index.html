@@ -45,7 +45,7 @@
                     <input type="text" class="form__input form__input_name" name="name" placeholder="Name" required>
                     <label class="form__label">About Me</label>
                     <input type="text" class="form__input form__input_job" name="job" placeholder="About Me" required>
-                    <button class="button button_submit" type="submit">Save</button>
+                    <button class="button button_submit button_submit_edit" type="submit">Save</button>
                 </form>
             </div>
         </div>
@@ -60,7 +60,7 @@
                     <input type="text" class="form__input form__input_title" name="title" placeholder="Title" required>
                     <label class="form__label">URL</label>
                     <input type="text" class="form__input form__input_url" name="url" placeholder="Image URL" required>
-                    <button class="button button_submit" type="submit">Create</button>
+                    <button class="button button_submit button_submit_add" type="submit">Create</button>
                 </form>
             </div>
         </div>
@@ -73,16 +73,17 @@
                 </figure>
             </div>  
         </div>
-    <script src="./js/main.js"></script>
-    <template class="template-card">
-        <li class="photo-grid__item">
-            <button class="button button_trash"></button>
-            <img src="" alt="" class="photo-grid__image">
-            <div class="photo-grid__content">
-                <h3 class="photo-grid__title"></h3>
-                <button class="button button_heart"></button>
-            </div>
-        </li>
-    </template>
+        <template class="template-card">
+            <li class="photo-grid__item">
+                <button class="button button_trash"></button>
+                <img src="" alt="" class="photo-grid__image">
+                <div class="photo-grid__content">
+                    <h3 class="photo-grid__title"></h3>
+                    <button class="button button_heart"></button>
+                </div>
+            </li>
+        </template>
+    </div>
+    <script src="./js/script.js"></script>
 </body>
 </html>

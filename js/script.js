@@ -150,7 +150,16 @@ addPopup.addEventListener('click', function (evt) {
 //Add form submit 
 addPopup.addEventListener('submit', submitAddForm);
 
-
+// Execute a form submit when the user releases the Enter key
+urlInput.addEventListener("keyup", function(evt) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (urlInput.length > 0 && event.keyCode === 13) {
+      // Cancel the default action, if needed
+      evt.preventDefault();
+      // Trigger the button element with a click
+      submitAddForm(evt);
+    }
+  });
 
 //Image and image popup clicks
 cardsContainer.addEventListener('click', function (evt) {

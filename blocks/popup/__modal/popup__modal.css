@@ -8,8 +8,8 @@
     transition: all .5s .2s;
   }
 
-  @media (min-width: 31.25em) {
-        .popup__modal {
-            height: 20.625rem;
-        }
+  @media (min-width: 31.875em) {
+    .popup__modal {
+        height: 20.625rem;
     }
+}

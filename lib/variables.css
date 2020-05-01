@@ -7,12 +7,13 @@
     --font-plain: 'Inter', Helvetica, Arial, sans-serif;
   
     /* Colors */
-    --color-dark: hsl(0, 0%, 0%);
+    --color-dark: #000000;
+    --color-dark-opaque: hsla(0, 0%, 0%, 0.2);
     --color-darkish: hsla(0, 0%, 0%, 0.8);
     --color-lightish: hsla(0, 0%, 100%, 0.6);
     --color-light: hsl(0, 0%, 98%);
-    --color-mid: hsl(0, 0%, 33%);
-    --color-midish: rgba(84, 84, 84, 0.7);
+    --color-mid: #545454;
+    --color-midish: #545454b3;
   
     --ratio: 1.4;
     --s-5: calc(var(--s0) / var(--ratio) / var(--ratio) / var(--ratio) / var(--ratio) / var(--ratio));

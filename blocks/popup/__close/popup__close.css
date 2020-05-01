@@ -18,9 +18,11 @@
     opacity: .6;
 }
 
-@media (min-width: 31.25em) {
+@media (min-width: 31.875em) {
     .popup__close {
         right: -2.5rem;
         top: -2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
     }
 }

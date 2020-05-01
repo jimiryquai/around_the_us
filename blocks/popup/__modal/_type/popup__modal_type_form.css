@@ -9,3 +9,9 @@
             box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
+
+@media (min-width: 31.875em) {
+    .popup__modal_type_form {
+        height: 20.625rem;
+    }
+}

@@ -1,6 +1,7 @@
 .popup__modal_type_image {
-      min-width: 15rem;
-      min-height: 18.75rem;
-      max-width: 75vw;
-      max-height: 75vh;
+    width: 75vw;
+    max-width: 27rem;
+    height: 93.75vw;
+    max-height: 33.75rem;
   }
+  

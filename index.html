@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Around The US</title>
-    <link rel="stylesheet" href="./vendor/normalize.css">
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
@@ -19,11 +18,11 @@
                 </div>
                 <div class="profile__info">
                     <h1 class="profile__name">Jacques Cousteau</h1>
-                    <button class="button button_edit">
+                    <button class="button button_edit" title="Button that launches profile editing form">
                     </button>
                     <p class="profile__job">Explorer</p>
                 </div>
-                <button class="button button_add">
+                <button class="button button_add" title="Button that launches image adding form">
                 </button>
             </div>
             <section class="gallery">
@@ -36,37 +35,37 @@
         </footer>
         <div class="popup popup_type_edit">
             <div class="popup__modal popup__modal_type_form">
-                  <button class="popup__close popup__close_type_edit"></button>    
+                  <button class="popup__close popup__close_type_edit" title="Button that closes form"></button>    
                 <h2 class="content-title">
                     Edit profile
                 </h2>
                 <form class="form form_type_edit">
-                    <label class="form__label">Full Name</label>
+                    <label class="form__label" for="name">Full Name</label>
                     <input type="text" class="form__input form__input_name" name="name" placeholder="Name" required>
-                    <label class="form__label">About Me</label>
+                    <label class="form__label" for="job">About Me</label>
                     <input type="text" class="form__input form__input_job" name="job" placeholder="About Me" required>
-                    <button class="button button_submit button_submit_edit" type="submit">Save</button>
+                    <button class="button button_submit" type="submit">Save</button>
                 </form>
             </div>
         </div>
         <div class="popup popup_type_add">
             <div class="popup__modal popup__modal_type_form">
-                  <button class="popup__close popup__close_type_add"></button>    
+                  <button class="popup__close popup__close_type_add" title="Button that closes form"></button>    
                 <h2 class="content-title">
                     Add Place
                 </h2>
                 <form class="form form_type_add">
-                    <label class="form__label">Title</label>
+                    <label class="form__label" for="title">Title</label>
                     <input type="text" class="form__input form__input_title" name="title" placeholder="Title" required>
-                    <label class="form__label">URL</label>
+                    <label class="form__label" for="url">URL</label>
                     <input type="text" class="form__input form__input_url" name="url" placeholder="Image URL" required>
-                    <button class="button button_submit button_submit_add" type="submit">Create</button>
+                    <button class="button button_submit" type="submit">Create</button>
                 </form>
             </div>
         </div>
         <div class="popup popup_type_image">
             <div class="popup__modal popup__modal_type_image">
-                <button class="popup__close popup__close_type_image"></button>    
+                <button class="popup__close popup__close_type_image" title="Button that closes form"></button>    
                 <figure class="popup__figure">
                     <img src="" alt="" class="popup__image">
                     <figcaption class="popup__caption"></figcaption>
@@ -75,11 +74,11 @@
         </div>
         <template class="template-card">
             <li class="photo-grid__item">
-                <button class="button button_trash"></button>
+                <button class="button button_trash" title="Button that deletes image"></button>
                 <img src="" alt="" class="photo-grid__image">
                 <div class="photo-grid__content">
                     <h3 class="photo-grid__title"></h3>
-                    <button class="button button_heart"></button>
+                    <button class="button button_heart" title="Button that likes image"></button>
                 </div>
             </li>
         </template>

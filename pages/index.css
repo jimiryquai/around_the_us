@@ -1,4 +1,7 @@
 /* Fonts */
+@import url('../vendor/normalize.css');
+
+/* Fonts */
 @import url('../lib/fonts.css');
 
 /* Modular scale, colors, etc. */

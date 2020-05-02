@@ -9,5 +9,6 @@
         flex-flow: row wrap;
         justify-content: flex-start;
         flex-grow: 2;
+        max-width: 26.75rem;
     }
 }

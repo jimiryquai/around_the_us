@@ -4,15 +4,7 @@
     font-family: var(--font-plain);
     background-color: var(--color-dark);
     color: var(--color-light);
-  }
-  
-  *,
-  *::before,
-  *::after {
     box-sizing: border-box;
-    background-color: inherit;
-    font-family: inherit;
-    color: inherit;
     overflow-wrap: break-word;
     margin: 0;
     padding: 0;

@@ -3,7 +3,7 @@
     width: 1.125rem;
     height: 1.125rem;
     align-self: flex-end;
-    margin-top: -37px;
+    margin-top: -52px;
     margin-right: -18px;
     font-size: 0;
     background: url(../../../images/edit-icon.svg) .46875rem no-repeat;
@@ -14,7 +14,7 @@
     .button_edit {
         width: 1.3125rem;
         height: 1.3125rem;
-        margin-bottom: -40px;
+        margin-bottom: -52px;
         align-self: center;
     }
 }
@@ -23,6 +23,6 @@
     .button_edit {
         width: 1.5rem;
         height: 1.5rem;
-        margin-top: -32px;
+        margin-bottom: -60px;
     }
 }

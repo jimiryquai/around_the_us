@@ -10,16 +10,8 @@
     margin-top: var(--s3);
     margin-left: auto;
     margin-right: auto;
+    white-space: nowrap;
 }
-
-  .profile * {
-    margin-top: 0;
-    margin-bottom: 0;
-  } 
-  
-  .profile * + * {
-    margin-top: var(--s0);
-  }
 
   @media (min-width: 50em) {
     .profile {
@@ -27,9 +19,5 @@
     justify-content: space-between;
     max-width: 100%;
     align-items: center;
-  }
-
-  .profile * + * {
-    margin-top: 0;
   }
 }

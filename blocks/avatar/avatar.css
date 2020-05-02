@@ -1,5 +1,7 @@
 @import url('./__img/avatar__img.css');
 
-.avatar {
-    padding: calc(var(--s0) / 4) var(--s0);
+@media (min-width: 50em) {
+    .avatar {
+        margin-right: 1.875rem;
+    }
 }

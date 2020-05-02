@@ -5,16 +5,16 @@
     --font-black: 900;
 
     --font-plain: 'Inter', Helvetica, Arial, sans-serif;
-  
+
     /* Colors */
     --color-dark: #000000;
-    --color-dark-opaque: hsla(0, 0%, 0%, 0.2);
-    --color-darkish: hsla(0, 0%, 0%, 0.8);
-    --color-lightish: hsla(0, 0%, 100%, 0.6);
+    --color-dark-opaque: hsla(0, 0%, 0%, .2);
+    --color-darkish: hsla(0, 0%, 0%, .8);
+    --color-lightish: hsla(0, 0%, 100%, .6);
     --color-light: hsl(0, 0%, 98%);
     --color-mid: #545454;
     --color-midish: #545454b3;
-  
+
     --ratio: 1.4;
     --s-5: calc(var(--s0) / var(--ratio) / var(--ratio) / var(--ratio) / var(--ratio) / var(--ratio));
     --s-4: calc(var(--s0) / var(--ratio) / var(--ratio) / var(--ratio) / var(--ratio));

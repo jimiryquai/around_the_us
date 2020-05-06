@@ -7,10 +7,3 @@
     text-rendering: optimizeSpeed;
     padding: var(--s1) var(--s0) var(--s2);
   }
-
-@media (max-width: 320px) {
-  .page {
-    padding-left: calc(var(--s0) / 2);
-    padding-right: calc(var(--s0) / 2);
-  }
-}

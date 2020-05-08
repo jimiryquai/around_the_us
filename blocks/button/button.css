@@ -3,6 +3,7 @@
 @import url('./_submit/button_submit.css');
 @import url('./_trash/button_trash.css');
 @import url('./_heart/button_heart.css');
+@import url('./__disabled/button_disabled.css');
 
 .button {
     border-radius: 2px;

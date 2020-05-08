@@ -81,7 +81,7 @@ function createCard(card) {
     cardLove.addEventListener('click', function (evt) {
         evt.target.classList.toggle('button_heart_liked');
     });
-    
+
     //trash button clicks
     cardTrash.addEventListener('click', function (evt) {
         evt.target.parentElement.remove();
@@ -110,7 +110,7 @@ function submitEditForm (evt) {
 
 //Add form functions
 function submitAddForm (evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
     renderCard({name: titleInput.value, link: urlInput.value});
     addForm.reset();
     togglePopup(addPopup);
@@ -147,7 +147,7 @@ addPopup.addEventListener('click', function (evt) {
     }
 });
 
-//Add form submit 
+//Add form submit
 addPopup.addEventListener('submit', submitAddForm);
 
 imgPopup.addEventListener('click', function (evt) {

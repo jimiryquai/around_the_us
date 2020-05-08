@@ -8,6 +8,7 @@
     -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
             box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
 @media (min-width: 31.875em) {

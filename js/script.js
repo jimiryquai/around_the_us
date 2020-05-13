@@ -3,6 +3,9 @@ const profile = document.querySelector('.profile');
 const name = profile.querySelector('.profile__name');
 const job = profile.querySelector('.profile__job');
 
+//Global popup
+const popup = document.querySelector('.popup');
+
 // Edit form variables
 const editPopup = document.querySelector('.popup_type_edit');
 const nameInput = editPopup.querySelector('.form__input_name');
@@ -49,11 +52,49 @@ const initialCards = [
     }
 ];
 
-//Toggle popups function
-// Function to open/close Popup Wimdows
+// Edit form functions
+function renderEditForm() {
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
+}
+
+//Toggle popup function
+// Function to open/close popup windows
 function togglePopup(popup) {
-    popup.classList.toggle('popup_opened');
-  }
+  popup.classList.toggle('popup_opened');
+
+  popup.addEventListener('click', function (evt) {
+    if ( evt.target.classList.contains( 'popup' ) ) {
+        togglePopup(popup);
+    }
+  });
+
+  // fires only once - when the user releases the key
+  window.addEventListener('keyup', function (evt) {
+    if ( evt.key === 'Escape' ) {
+      togglePopup(popup);
+    }
+  });
+
+  editPopup.addEventListener('click', function (evt) {
+    if ( evt.target.classList.contains( 'popup__close_type_edit' ) ) {
+        togglePopup(editPopup);
+    }
+  });
+
+  addPopup.addEventListener('click', function (evt) {
+    if ( evt.target.classList.contains( 'popup__close_type_add' ) ) {
+        togglePopup(addPopup);
+    }
+  });
+
+  imgPopup.addEventListener('click', function (evt) {
+    if ( evt.target.classList.contains( 'popup__close_type_image' ) ) {
+        togglePopup(imgPopup);
+    }
+  });
+
+}
 
 //Image popup function
 function renderImgPopup(evt) {
@@ -95,12 +136,6 @@ function renderCard (card) {
     cardsContainer.append(createCard(card));
 }
 
-// Edit form functions
-function renderEditForm() {
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
-}
-
 function submitEditForm (evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
@@ -119,16 +154,10 @@ function submitAddForm (evt) {
 //Event handlers
 //Edit button clicks
 profile.addEventListener('click', function (evt) {
-    if ( evt.target.classList.contains( 'button_edit' ) ) {
-        togglePopup(editPopup);
-        renderEditForm();
-    }
-});
-
-editPopup.addEventListener('click', function (evt) {
-    if ( evt.target.classList.contains( 'popup__close_type_edit' ) ) {
-        togglePopup(editPopup);
-    }
+  if ( evt.target.classList.contains( 'button_edit' ) ) {
+      togglePopup(editPopup);
+      renderEditForm();
+  }
 });
 
 //Edit form submit
@@ -136,27 +165,17 @@ editPopup.addEventListener('submit', submitEditForm);
 
 //Add button clicks
 profile.addEventListener('click', function (evt) {
-    if ( evt.target.classList.contains( 'button_add' ) ) {
-        togglePopup(addPopup);
-    }
-});
-
-addPopup.addEventListener('click', function (evt) {
-    if ( evt.target.classList.contains( 'popup__close_type_add' ) ) {
-        togglePopup(addPopup);
-    }
+  if ( evt.target.classList.contains( 'button_add' ) ) {
+      togglePopup(addPopup);
+  }
 });
 
 //Add form submit
 addPopup.addEventListener('submit', submitAddForm);
 
-imgPopup.addEventListener('click', function (evt) {
-    if ( evt.target.classList.contains( 'popup__close_type_image' ) ) {
-        togglePopup(imgPopup);
-    }
-});
-
 // Add six initial cards on load
 initialCards.forEach(function (card) {
     renderCard(card);
 });
+
+renderEditForm();

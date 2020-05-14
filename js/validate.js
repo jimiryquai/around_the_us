@@ -1,63 +1,59 @@
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add("form__input_type_error");
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
+const showInputError = (form, input, errorMessage, {inputErrorClass, errorClass}) => {
+  const error = form.querySelector(`#${input.id}-error`);
+  input.classList.add(inputErrorClass);
+  error.textContent = errorMessage;
+  error.classList.add(errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove("form__input_type_error");
-  errorElement.classList.remove("form__input-error_active");
-  errorElement.textContent = "";
+const hideInputError = (form, input, {inputErrorClass, errorClass}) => {
+  const error = form.querySelector(`#${input.id}-error`);
+  input.classList.remove(inputErrorClass);
+  error.classList.remove(errorClass);
+  error.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+const checkInputValidity = (form, input, rest) => {
+  if (!input.validity.valid) {
+    showInputError(form, input, input.validationMessage, rest);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(form, input, rest);
   }
 };
 
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
+const hasInvalidInput = (inputs) => {
+  return inputs.some((input) => {
+    return !input.validity.valid;
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("button_disabled");
+const toggleButtonState = (inputs, submitButton, {inactiveButtonClass}) => {
+  if (hasInvalidInput(inputs)) {
+    submitButton.classList.add(inactiveButtonClass);
   } else {
-    buttonElement.classList.remove("button_disabled");
+    submitButton.classList.remove(inactiveButtonClass);
   }
 };
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-  const buttonElement = formElement.querySelector(".button_submit");
-
-  // here, to check the button state in the very beginning
-  toggleButtonState(inputList, buttonElement);
-
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-      // and here, to check it whenever any field input is changed
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".form"));
-  formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => {
+const enableValidation = ({formSelector, inputSelector, submitButtonSelector, ...rest}) => {
+  const forms = Array.from(document.querySelectorAll(formSelector));
+  forms.forEach((form) => {
+    form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-     setEventListeners(formElement);
+
+    const inputs = Array.from(form.querySelectorAll(inputSelector));
+    const submitButton = form.querySelector(submitButtonSelector);
+
+    // here, to check the button state in the very beginning
+    toggleButtonState(inputs, submitButton, rest);
+
+    inputs.forEach((input) => {
+      input.addEventListener("input", function () {
+        checkInputValidity(form, input, rest);
+        // and here, to check it whenever any field input is changed
+        toggleButtonState(inputs, submitButton, rest);
+      });
+    });
   });
 };
 
@@ -65,10 +61,10 @@ const enableValidation = () => {
 // pass all the settings on call
 
 enableValidation({
-  formElement: ".form",
-  inputElement: ".form__input",
-  buttonElement: ".button_submit",
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".button_submit",
   inactiveButtonClass: "button_disabled",
   inputErrorClass: "form__input_type_error",
-  errorClass: "form_input-error_active"
+  errorClass: "form__input-error_active"
 });

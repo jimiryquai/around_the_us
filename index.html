@@ -42,11 +42,17 @@
         <form class="form form_type_edit" novalidate>
           <fieldset class="form__set">
             <label class="form__label" for="name-input">
-              <input type="text" class="form__input form__input_name" id="name-input" name="name-input" placeholder="Name" required minlength="2" maxlength="40">
+              <input type="text" class="form__input form__input_name" id="name-input" name="name-input"
+                     placeholder="Name" required minlength="2" maxlength="40" pattern="[A-Za-z -]{2,}"
+                     aria-describedby="name-input-error"
+                     >
               <span class="form__input-error" id="name-input-error"></span>
             </label>
             <label class="form__label" for="job-input">
-              <input type="text" class="form__input form__input_job" id="job-input" name="job-input" placeholder="About Me" required minlength="2" maxlength="200">
+              <input type="text" class="form__input form__input_job" id="job-input" name="job-input"
+                     placeholder="About Me" required minlength="2" maxlength="200"
+                     aria-describedby="job-input-error"
+                     >
               <span class="form__input-error" id="job-input-error"></span>
             </label>
             <button class="button button_submit" type="submit">Save</button>
@@ -70,8 +76,8 @@
               <span class="form__input-error" id="title-input-error"></span>
             </label>
             <label class="form__label" for="url-input" pattern>
-              <input type="url" class="form__input form__input_url" id="url-input" name="url-input" placeholder="Image URL"
-                     required pattern="/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/i"
+              <input type="url" class="form__input form__input_url" id="url-input" name="url-input"
+                     placeholder="Image URL" required
                      aria-describedby="url-input-error"
                      >
               <span class="form__input-error" id="url-input-error"></span>

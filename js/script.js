@@ -23,7 +23,7 @@ const figImage = imgPopup.querySelector('.popup__image');
 const figCaption = imgPopup.querySelector('.popup__caption');
 
 // Cards variables
-const cardTemplate = document.querySelector('.template-card').content;
+const cardTemplate = document.querySelector('.card-template').content;
 const cardsContainer = document.querySelector('.photo-grid');
 const initialCards = [
     {
@@ -106,8 +106,8 @@ function renderImgPopup(evt) {
 
 function createCard(card) {
     const cardElement = cardTemplate.cloneNode(true);
-    const cardImage = cardElement.querySelector('.photo-grid__image');
-    const cardTitle =  cardElement.querySelector('.photo-grid__title');
+    const cardImage = cardElement.querySelector('.card__image');
+    const cardTitle =  cardElement.querySelector('.card__title');
     const cardLove =  cardElement.querySelector('.button_heart');
     const cardTrash =  cardElement.querySelector('.button_trash');
     cardImage.src = card.link;

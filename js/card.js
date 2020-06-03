@@ -25,11 +25,12 @@ const items = [
   }
 ];
 
-const popup = document.querySelector('.popup');
 const imgPopup = document.querySelector('.popup_type_image');
 const figImage = imgPopup.querySelector('.popup__image');
 const figCaption = imgPopup.querySelector('.popup__caption');
 const popupCloseButton = imgPopup.querySelector('.popup__close_type_image');
+const cardLove =  document.querySelector('.button_heart');
+const cardTrash =  document.querySelector('.button_trash');
 
 export default class Card {
   constructor(data, cardSelector) {
@@ -44,10 +45,6 @@ export default class Card {
       .content
       .querySelector(".card")
       .cloneNode(true);
-    const cardTitle =  cardElement.querySelector('.card__title');
-    const cardLove =  cardElement.querySelector('.button_heart');
-    const cardTrash =  cardElement.querySelector('.button_trash');
-
     return cardElement;
   }
 
@@ -65,38 +62,47 @@ export default class Card {
   _handleOpenPopup() {
     figImage.src = this._image;
     figCaption.textContent = this._title;
-    popup.classList.add("popup_opened");
+    imgPopup.classList.add("popup_opened");
   }
 
   _handleClosePopup() {
     figImage.src = "";
-    popup.classList.remove("popup_opened");
-    }
+    imgPopup.classList.remove("popup_opened");
+  }
+
+  _handleButtonHeartClick() {
+    cardLove.classList.toggle("button_heart_liked");
+  }
+
+  _handleButtonTrashClick() {
+    cardTrash.parentElement.remove();
+  }
+
 
   _setEventListeners() {
   this._element.addEventListener("click", () => {
     // open the popup
-    _handleOpenPopup();
+    this._handleOpenPopup();
     });
 
   popupCloseButton.addEventListener("click", () => {
     // close the popup
-    _handleClosePopup();
+    this._handleClosePopup();
     });
 
-  cardLove.addEventListener('click', function (evt) {
-      evt.target.classList.toggle('button_heart_liked');
+  this._element.querySelector(".button_heart").addEventListener('click', () => {
+    this._handleButtonHeartClick();
     });
 
   //trash button clicks
-  cardTrash.addEventListener('click', function (evt) {
-      evt.target.parentElement.remove();
+  this._element.addEventListener("click", () => {
+    this._handleButtonTrashClick();
     });
   }
 }
 
 items.forEach((item) => {
-  const card = new Card(item, ".card");
+  const card = new Card(item, ".card-template");
   const cardElement = card.generateCard();
 
   // Add to the DOM

@@ -71,16 +71,16 @@ export default class Card {
   }
 
   _handleButtonHeartClick() {
-    cardLove.classList.toggle("button_heart_liked");
+    this._element.querySelector(".button_heart").classList.toggle("button_heart_liked");
   }
 
   _handleButtonTrashClick() {
-    cardTrash.parentElement.remove();
+    this._element.remove();
   }
 
 
   _setEventListeners() {
-  this._element.addEventListener("click", () => {
+  this._element.querySelector(".card__image").addEventListener("click", () => {
     // open the popup
     this._handleOpenPopup();
     });
@@ -95,7 +95,7 @@ export default class Card {
     });
 
   //trash button clicks
-  this._element.addEventListener("click", () => {
+  this._element.querySelector(".button_trash").addEventListener("click", () => {
     this._handleButtonTrashClick();
     });
   }

@@ -1,4 +1,40 @@
+import FormValidator from "./formValidator.js";
 import Card from "./card.js";
+
+const initialCards = [
+  {
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+      name: "Vanois National Park",
+      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+  },
+  {
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+
+const formConfig = ({
+  inputSelector: ".form__input",
+  submitButtonSelector: ".button_submit",
+  inactiveButtonClass: "button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active"
+});
 
 //Profile inputs
 const profile = document.querySelector('.profile');
@@ -19,40 +55,18 @@ const addForm = addPopup.querySelector('.form_type_add');
 const titleInput = addPopup.querySelector('.form__input_title');
 const urlInput = addPopup.querySelector('.form__input_url');
 
-// //Image popup variables
-// const imgPopup = document.querySelector('.popup_type_image');
-// const figImage = imgPopup.querySelector('.popup__image');
-// const figCaption = imgPopup.querySelector('.popup__caption');
+const cardsContainer = document.querySelector('.photo-grid');
 
-// // Cards variables
-// const cardTemplate = document.querySelector('.card-template').content;
-// const cardsContainer = document.querySelector('.photo-grid');
-// const initialCards = [
-//   {
-//       name: "Yosemite Valley",
-//       link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-//   },
-//   {
-//       name: "Lake Louise",
-//       link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-//   },
-//   {
-//       name: "Bald Mountains",
-//       link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-//   },
-//   {
-//       name: "Latemar",
-//       link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-//   },
-//   {
-//       name: "Vanois National Park",
-//       link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-//   },
-//   {
-//       name: "Lago di Braies",
-//       link: "https://code.s3.yandex.net/web-code/lago.jpg"
-//   }
-// ];
+const editFormValidator = new FormValidator(formConfig, editPopup);
+const addFormValidator = new FormValidator(formConfig, addPopup);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+function renderCard (element) {
+  const card = new Card(element, ".card-template").generateCard();
+  cardsContainer.append(card);
+}
 
 // Edit form functions
 function renderEditForm() {
@@ -63,7 +77,7 @@ function renderEditForm() {
 //Toggle popup function
 // Function to open/close popup windows
 function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
+  popup.classList.toggle( 'popup_opened' );
 
   popup.addEventListener('click', function (evt) {
     if ( evt.target.classList.contains( 'popup' ) ) {
@@ -89,53 +103,7 @@ function togglePopup(popup) {
         togglePopup(addPopup);
     }
   });
-
-  imgPopup.addEventListener('click', function (evt) {
-    if ( evt.target.classList.contains( 'popup__close_type_image' ) ) {
-        togglePopup(imgPopup);
-    }
-  });
 }
-
-//Image popup function
-function renderImgPopup(evt) {
-    figImage.src = evt.target.src;
-    figImage.alt = evt.target.alt;
-    figCaption.textContent = evt.target.alt;
-    togglePopup(imgPopup);
-}
-
-// function createCard(card) {
-//     const cardElement = cardTemplate.cloneNode(true);
-//     const cardImage = cardElement.querySelector('.card__image');
-//     const cardTitle =  cardElement.querySelector('.card__title');
-//     const cardLove =  cardElement.querySelector('.button_heart');
-//     const cardTrash =  cardElement.querySelector('.button_trash');
-//     cardImage.src = card.link;
-//     cardImage.alt = card.name;
-//     cardTitle.textContent = card.name;
-
-//     //Image and image popup clicks
-//     cardImage.addEventListener('click', function (evt) {
-//         renderImgPopup(evt);
-//     });
-
-//     cardLove.addEventListener('click', function (evt) {
-//         evt.target.classList.toggle('button_heart_liked');
-//     });
-
-//     //trash button clicks
-//     cardTrash.addEventListener('click', function (evt) {
-//         evt.target.parentElement.remove();
-//     });
-
-//     return cardElement;
-// }
-
-// function renderCard (card) {
-//     createCard(card);
-//     cardsContainer.append(createCard(card));
-// }
 
 function submitEditForm (evt) {
     evt.preventDefault();
@@ -147,7 +115,7 @@ function submitEditForm (evt) {
 //Add form functions
 function submitAddForm (evt) {
     evt.preventDefault();
-    renderCard({name: titleInput.value, link: urlInput.value});
+    renderCard ({name: titleInput.value, link: urlInput.value});
     addForm.reset();
     togglePopup(addPopup);
 }
@@ -174,9 +142,6 @@ profile.addEventListener('click', function (evt) {
 //Add form submit
 addPopup.addEventListener('submit', submitAddForm);
 
-// // Add six initial cards on load
-// initialCards.forEach(function (card) {
-//     renderCard(card);
-// });
+initialCards.forEach(element => renderCard(element));
 
 renderEditForm();

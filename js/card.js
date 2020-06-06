@@ -1,36 +1,14 @@
-const items = [
-  {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-      name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-  },
-  {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
-
 const imgPopup = document.querySelector('.popup_type_image');
 const figImage = imgPopup.querySelector('.popup__image');
 const figCaption = imgPopup.querySelector('.popup__caption');
 const popupCloseButton = imgPopup.querySelector('.popup__close_type_image');
-const cardLove =  document.querySelector('.button_heart');
-const cardTrash =  document.querySelector('.button_trash');
+
+  // fires only once - when the user releases the key
+  window.addEventListener('keyup', function (evt) {
+    if ( evt.key === 'Escape' ) {
+      imgPopup.classList.remove("popup_opened");
+    }
+  });
 
 export default class Card {
   constructor(data, cardSelector) {
@@ -100,11 +78,3 @@ export default class Card {
     });
   }
 }
-
-items.forEach((item) => {
-  const card = new Card(item, ".card-template");
-  const cardElement = card.generateCard();
-
-  // Add to the DOM
-  document.querySelector(".photo-grid").append(cardElement);
-});

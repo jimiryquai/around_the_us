@@ -1,14 +1,4 @@
-const imgPopup = document.querySelector('.popup_type_image');
-const figImage = imgPopup.querySelector('.popup__image');
-const figCaption = imgPopup.querySelector('.popup__caption');
-const popupCloseButton = imgPopup.querySelector('.popup__close_type_image');
-
-  // fires only once - when the user releases the key
-  window.addEventListener('keyup', function (evt) {
-    if ( evt.key === 'Escape' ) {
-      imgPopup.classList.remove("popup_opened");
-    }
-  });
+import {togglePopup, imgPopup, figImage, figCaption} from './script.js';
 
 export default class Card {
   constructor(data, cardSelector) {
@@ -37,16 +27,24 @@ export default class Card {
     return this._element;
   }
 
-  _handleOpenPopup() {
-    figImage.src = this._image;
-    figCaption.textContent = this._title;
-    imgPopup.classList.add("popup_opened");
-  }
+  _setEventListeners() {
+    this._element.querySelector(".card__image").addEventListener("click", () => {
+      figImage.src = this._image;
+      figImage.alt = this._title;
+      figCaption.textContent = this._title;
+      // open the popup
+      togglePopup(imgPopup);
+      });
 
-  _handleClosePopup() {
-    figImage.src = "";
-    imgPopup.classList.remove("popup_opened");
-  }
+    this._element.querySelector(".button_heart").addEventListener('click', () => {
+      this._handleButtonHeartClick();
+      });
+
+    //trash button clicks
+    this._element.querySelector(".button_trash").addEventListener("click", () => {
+      this._handleButtonTrashClick();
+      });
+    }
 
   _handleButtonHeartClick() {
     this._element.querySelector(".button_heart").classList.toggle("button_heart_liked");
@@ -54,27 +52,5 @@ export default class Card {
 
   _handleButtonTrashClick() {
     this._element.remove();
-  }
-
-
-  _setEventListeners() {
-  this._element.querySelector(".card__image").addEventListener("click", () => {
-    // open the popup
-    this._handleOpenPopup();
-    });
-
-  popupCloseButton.addEventListener("click", () => {
-    // close the popup
-    this._handleClosePopup();
-    });
-
-  this._element.querySelector(".button_heart").addEventListener('click', () => {
-    this._handleButtonHeartClick();
-    });
-
-  //trash button clicks
-  this._element.querySelector(".button_trash").addEventListener("click", () => {
-    this._handleButtonTrashClick();
-    });
   }
 }

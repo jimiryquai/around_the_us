@@ -41,9 +41,6 @@ const profile = document.querySelector('.profile');
 const name = profile.querySelector('.profile__name');
 const job = profile.querySelector('.profile__job');
 
-//Global popup
-const popup = document.querySelector('.popup');
-
 // Edit form variables
 const editPopup = document.querySelector('.popup_type_edit');
 const nameInput = editPopup.querySelector('.form__input_name');
@@ -59,6 +56,10 @@ const cardsContainer = document.querySelector('.photo-grid');
 
 const editFormValidator = new FormValidator(formConfig, editPopup);
 const addFormValidator = new FormValidator(formConfig, addPopup);
+
+export const imgPopup = document.querySelector('.popup_type_image');
+export const figImage = imgPopup.querySelector('.popup__image');
+export const figCaption = imgPopup.querySelector('.popup__caption');
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
@@ -76,31 +77,37 @@ function renderEditForm() {
 
 //Toggle popup function
 // Function to open/close popup windows
-function togglePopup(popup) {
+export function togglePopup(popup) {
   popup.classList.toggle( 'popup_opened' );
 
-  popup.addEventListener('click', function (evt) {
+  popup.addEventListener('click', evt => {
     if ( evt.target.classList.contains( 'popup' ) ) {
         togglePopup(popup);
     }
   });
 
   // fires only once - when the user releases the key
-  window.addEventListener('keyup', function (evt) {
+  window.addEventListener('keyup', evt => {
     if ( evt.key === 'Escape' ) {
       togglePopup(popup);
     }
   });
 
-  editPopup.addEventListener('click', function (evt) {
+  editPopup.addEventListener('click', evt => {
     if ( evt.target.classList.contains( 'popup__close_type_edit' ) ) {
         togglePopup(editPopup);
     }
   });
 
-  addPopup.addEventListener('click', function (evt) {
+  addPopup.addEventListener('click', evt => {
     if ( evt.target.classList.contains( 'popup__close_type_add' ) ) {
         togglePopup(addPopup);
+    }
+  });
+
+  imgPopup.addEventListener('click', evt => {
+    if ( evt.target.classList.contains( 'popup__close_type_image' ) ) {
+      togglePopup(imgPopup);
     }
   });
 }
@@ -122,7 +129,7 @@ function submitAddForm (evt) {
 
 //Event handlers
 //Edit button clicks
-profile.addEventListener('click', function (evt) {
+profile.addEventListener('click', evt => {
   if ( evt.target.classList.contains( 'button_edit' ) ) {
       togglePopup(editPopup);
       renderEditForm();
@@ -133,7 +140,7 @@ profile.addEventListener('click', function (evt) {
 editPopup.addEventListener('submit', submitEditForm);
 
 //Add button clicks
-profile.addEventListener('click', function (evt) {
+profile.addEventListener('click', evt => {
   if ( evt.target.classList.contains( 'button_add' ) ) {
       togglePopup(addPopup);
   }

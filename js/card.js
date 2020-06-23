@@ -1,4 +1,5 @@
-import {togglePopup, imgPopup, figImage, figCaption} from './script.js';
+import {imgPopup, figImage, figCaption} from './constants.js';
+import togglePopup from './index.js'
 
 export default class Card {
   constructor(data, cardSelector) {

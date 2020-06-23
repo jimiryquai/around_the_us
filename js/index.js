@@ -1,65 +1,29 @@
-import FormValidator from "./formValidator.js";
-import Card from "./card.js";
+import Card from "./Card.js";
+import Section from "./Section.js";
+import {
+  editFormValidator,
+  addFormValidator,
+  nameInput,
+  jobInput,
+  initialCards,
+  cardsContainer
+} from "./constants.js";
 
-const initialCards = [
-  {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item.name, item.link);
+    const cardElement = card.generateCard();
+
+    cardsList.addItem(cardElement);
+    },
   },
-  {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-      name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-  },
-  {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
+  cardsContainer
+);
 
-const formConfig = ({
-  inputSelector: ".form__input",
-  submitButtonSelector: ".button_submit",
-  inactiveButtonClass: "button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active"
-});
+// rendering the cards
+cardsList.renderItems();
 
-//Profile inputs
-const profile = document.querySelector('.profile');
-const name = profile.querySelector('.profile__name');
-const job = profile.querySelector('.profile__job');
-
-// Edit form variables
-const editPopup = document.querySelector('.popup_type_edit');
-const nameInput = editPopup.querySelector('.form__input_name');
-const jobInput = editPopup.querySelector('.form__input_job');
-
-//Add form variables
-const addPopup = document.querySelector('.popup_type_add');
-const addForm = addPopup.querySelector('.form_type_add');
-const titleInput = addPopup.querySelector('.form__input_title');
-const urlInput = addPopup.querySelector('.form__input_url');
-
-const cardsContainer = document.querySelector('.photo-grid');
-
-const editFormValidator = new FormValidator(formConfig, editPopup);
-const addFormValidator = new FormValidator(formConfig, addPopup);
-
-export const imgPopup = document.querySelector('.popup_type_image');
-export const figImage = imgPopup.querySelector('.popup__image');
-export const figCaption = imgPopup.querySelector('.popup__caption');
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();

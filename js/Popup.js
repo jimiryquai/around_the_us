@@ -1,7 +1,7 @@
 import togglePopup from "./index.js";
 import {popup, popupCloseButton} from "./constants.js";
 
-export default class Section
+export default class Popup
 {
   constructor(popupSelector)
   {
@@ -15,12 +15,9 @@ export default class Section
   {
     togglePopup(popup);
   }
-  _handleEscClose(evt)
+  _handleEscClose()
   {
-    if ( evt.key === 'Escape' )
-    {
-      togglePopup(popup);
-    }
+    togglePopup(popup);
   }
 
   setEventListeners()
@@ -35,10 +32,11 @@ export default class Section
       this.close();
     });
 
-    window.addEventListener('keyup', evt =>
+    window.addEventListener('keyup', (evt) =>
     {
-      this._handleEscClose(evt);
+      if ( evt.key === 'Escape' ) {
+        this._handleEscClose();
+      }
     });
-
   }
 }

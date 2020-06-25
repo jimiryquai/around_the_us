@@ -51,7 +51,7 @@ export const addForm = addPopup.querySelector('.form_type_add');
 export const titleInput = addPopup.querySelector('.form__input_title');
 export const urlInput = addPopup.querySelector('.form__input_url');
 
-export const cardsContainer = document.querySelector('.photo-grid');
+export const cardsContainer = '.photo-grid';
 
 export const editFormValidator = new FormValidator(formConfig, editPopup);
 export const addFormValidator = new FormValidator(formConfig, addPopup);

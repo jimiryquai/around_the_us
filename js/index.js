@@ -1,45 +1,50 @@
-import Card from "./Card.js";
-import Section from "./Section.js";
 import {
   titleInput,
   urlInput,
   name,
   job,
-  formConfig,
-  profile,
   editPopup,
   addPopup,
-  imgPopup,
-  editFormValidator,
-  addFormValidator,
+  addForm,
   nameInput,
   jobInput,
   initialCards,
-  cardsContainer
-} from "./constants.js";
+  cardsContainer,
+  formConfig
+}
+from "./constants.js";
 
+import Card from "./Card.js";
+import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./PopupWithImage.js";
+import FormValidator from "./FormValidator.js";
+import UserInfo from "./UserInfo.js";
+////////////////////////////////
+const imgPopup = new PopupWithImage(".popup_type_image");
+imgPopup.setEventListeners();
+
+//Create Section and Initial Cards
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.card-template');
-    const cardElement = card.generateCard();
-
-    cardsList.addItem(cardElement);
+    const handleCardClick = (itemName, itemLink) => {
+      imgPopup.open(itemName, itemLink);
+      imgPopup.setEventListeners();
+    };
+    const card = new Card(item.name, item.link, '.card-template', handleCardClick).generateCard();
+    cardsList.addItem(card);
     },
   },
   cardsContainer
 );
-
-// rendering the cards
+// Render the initial cards
 cardsList.renderItems();
 
-
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
-
-function renderCard (element, cardsContainer) {
-  const card = new Card(element, ".card-template").generateCard();
-  cardsContainer.append(card);
+// Render any subsequent cards
+const renderCard = (element, cardsContainer) => {
+  const card = new Card(element, ".card-template", handleCardClick).generateCard();
+  cardsContainer.prepend(card);
 }
 
 // Edit form functions
@@ -47,18 +52,6 @@ function renderEditForm() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
 }
-
-  editPopup.addEventListener('click', evt => {
-    if ( evt.target.classList.contains( 'popup__close_type_edit' ) ) {
-        togglePopup(editPopup);
-    }
-  });
-
-  addPopup.addEventListener('click', evt => {
-    if ( evt.target.classList.contains( 'popup__close_type_add' ) ) {
-        togglePopup(addPopup);
-    }
-  });
 
 function submitEditForm (evt) {
     evt.preventDefault();
@@ -75,39 +68,14 @@ function submitAddForm (evt) {
     togglePopup(addPopup);
 }
 
-//Event handlers
-//Edit button clicks
-profile.addEventListener('click', evt => {
-  if ( evt.target.classList.contains( 'button_edit' ) ) {
-      togglePopup(editPopup);
-      renderEditForm();
-  }
-});
-
 //Edit form submit
 editPopup.addEventListener('submit', submitEditForm);
 
-//Add button clicks
-profile.addEventListener('click', evt => {
-  if ( evt.target.classList.contains( 'button_add' ) ) {
-      togglePopup(addPopup);
-  }
-});
 
 //Add form submit
 addPopup.addEventListener('submit', submitAddForm);
 
-// initialCards.forEach(element => renderCard(element));
 
 renderEditForm();
-//Toggle popup function
-// Function to open/close popup windows
-export default function togglePopup(popup) {
-  popup.classList.toggle( 'popup_opened' );
-
-  popup.addEventListener('click', evt => {
-    if ( evt.target.classList.contains( 'popup' ) ) {
-        togglePopup(popup);
-    }
-  });
-}
+new FormValidator(formConfig, editPopup).enableValidation();
+new FormValidator(formConfig, addPopup).enableValidation();

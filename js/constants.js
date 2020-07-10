@@ -40,24 +40,23 @@ export const profile = document.querySelector('.profile');
 export const name = profile.querySelector('.profile__name');
 export const job = profile.querySelector('.profile__job');
 
-// Edit form variables
+// Popups
 export const editPopup = document.querySelector('.popup_type_edit');
+export const addPopup = document.querySelector('.popup_type_add');
+export const popup = document.querySelector('.popup');
+
+//Form inputs
+export const titleInput = addPopup.querySelector('.form__input_title');
+export const urlInput = addPopup.querySelector('.form__input_url');
 export const nameInput = editPopup.querySelector('.form__input_name');
 export const jobInput = editPopup.querySelector('.form__input_job');
 
 //Add form variables
-export const addPopup = document.querySelector('.popup_type_add');
+
 export const addForm = addPopup.querySelector('.form_type_add');
-export const titleInput = addPopup.querySelector('.form__input_title');
-export const urlInput = addPopup.querySelector('.form__input_url');
+
 
 export const cardsContainer = '.photo-grid';
 
-export const editFormValidator = new FormValidator(formConfig, editPopup);
-export const addFormValidator = new FormValidator(formConfig, addPopup);
-
-export const imgPopup = document.querySelector('.popup_type_image');
-export const figImage = imgPopup.querySelector('.popup__image');
-export const figCaption = imgPopup.querySelector('.popup__caption');
-export const popup = document.querySelector('.popup');
 export const popupCloseButton = document.querySelector('.popup__close');
+export const imgPopupClose = document.querySelector('.popup__close_type_img');

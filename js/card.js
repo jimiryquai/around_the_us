@@ -1,11 +1,9 @@
-import {imgPopup, figImage, figCaption} from './constants.js';
-import togglePopup from './index.js'
-
-export default class Card {
-  constructor(data, cardSelector) {
-    this._title = data.name;
-    this._image = data.link;
+class Card {
+  constructor(name, link, cardSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -18,40 +16,43 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector(".card__image").addEventListener("click", () => {
-      figImage.src = this._image;
-      figImage.alt = this._title;
-      figCaption.textContent = this._title;
-      // open the popup
-      togglePopup(imgPopup);
-      });
+    this._element.querySelector(".card__image")
+    .addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
+    });
 
-    this._element.querySelector(".button_heart").addEventListener('click', () => {
+    this._element.querySelector(".button_heart")
+    .addEventListener('click', () => {
       this._handleButtonHeartClick();
       });
 
     //trash button clicks
-    this._element.querySelector(".button_trash").addEventListener("click", () => {
+    this._element.querySelector(".button_trash")
+    .addEventListener("click", () => {
       this._handleButtonTrashClick();
       });
     }
 
   _handleButtonHeartClick() {
-    this._element.querySelector(".button_heart").classList.toggle("button_heart_liked");
+    this._element.querySelector(".button_heart")
+    .classList.toggle("button_heart_liked");
   }
 
   _handleButtonTrashClick() {
     this._element.remove();
   }
 
+
   generateCard() {
 
     this._element = this._getTemplate();
     this._setEventListeners(); // call the _setEventListeners
-    this._element.querySelector(".card__image").src = this._image;
-    this._element.querySelector(".card__image").alt = this._title;
-    this._element.querySelector(".card__title").textContent = this._title;
+    this._element.querySelector(".card__image").src = this._link;
+    this._element.querySelector(".card__image").alt = this._name;
+    this._element.querySelector(".card__title").textContent = this._name;
 
     return this._element;
   }
 }
+
+export default Card;

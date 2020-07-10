@@ -1,42 +1,35 @@
-import togglePopup from "./index.js";
-import {popup, popupCloseButton} from "./constants.js";
-
-export default class Popup
+class Popup
 {
   constructor(popupSelector)
   {
-    this._popupSelector = popupSelector;
-  }
-  open()
-  {
-    togglePopup(popup);
-  }
-  close()
-  {
-    togglePopup(popup);
-  }
-  _handleEscClose()
-  {
-    togglePopup(popup);
+    this._popupElement = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
-  setEventListeners()
-  {
-    this.element.addEventListener("click", () =>
-    {
+  open() {
+    this._popupElement.classList.add("popup_opened");
+    //add event listener for Esc
+    this.setEventListeners();
+  }
+
+  setEventListeners() {
+    document.addEventListener("keyup", this._handleEscClose);
+  }
+
+  _handleEscClose(evt) {
+    if (evt.key === "Escape") {
       this.close();
-    });
+      evt.stopPropagation();
+    }
+  }
 
-    popupCloseButton.addEventListener("click", () =>
-    {
-      this.close();
-    });
-
-    window.addEventListener('keyup', (evt) =>
-    {
-      if ( evt.key === 'Escape' ) {
-        this._handleEscClose();
-      }
-    });
+  close() {
+    this._popupElement.classList.remove("popup_opened");
+    document.removeEventListener("keyup", this._handleEscClose);
+    this._popupElement
+      .querySelector(".popup__close")
+      .removeEventListener("click", this.close);
   }
 }
+
+export default Popup;

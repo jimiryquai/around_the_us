@@ -18,6 +18,7 @@ class Card {
   _setEventListeners() {
     this._element.querySelector(".card__image")
     .addEventListener("click", () => {
+      event.stopPropagation();
       this._handleCardClick(this._name, this._link);
     });
 

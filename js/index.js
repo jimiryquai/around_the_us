@@ -1,8 +1,8 @@
 import {
   titleInput,
   urlInput,
-  name,
-  job,
+  profileName,
+  profileJob,
   editPopup,
   addPopup,
   addForm,
@@ -10,7 +10,9 @@ import {
   jobInput,
   initialCards,
   cardsContainer,
-  formConfig
+  formConfig,
+  editButton,
+  addButton
 }
 from "./constants.js";
 
@@ -21,8 +23,32 @@ import PopupWithImage from "./PopupWithImage.js";
 import FormValidator from "./FormValidator.js";
 import UserInfo from "./UserInfo.js";
 ////////////////////////////////
+const userInfo = new UserInfo(".profile__name", ".profile__job");
 const imgPopup = new PopupWithImage(".popup_type_image");
 imgPopup.setEventListeners();
+
+// profile popup
+
+const handleProfileEdit = (name, job) => {
+  userInfo.setUserInfo(name, job);
+}
+
+const editFormPopup = new PopupWithForm(".popup_type_edit", handleProfileEdit);
+editFormPopup.setEventListeners();
+
+// add Popup
+const handleAddCard = (imageTitle, imageLink) => {
+  const handleCardClick = (imageTitle, imageLink) => {
+    addPopup.open(imageTitle, imageLink);
+  };
+
+  const card = new Card(imageTitle, imageLink, '.card-template', handleCardClick).generateCard();
+  cardsList.addItem(card);
+}
+
+
+const addFormPopup = new PopupWithForm(".popup_type_add", handleAddCard);
+addFormPopup.setEventListeners();
 
 //Create Section and Initial Cards
 const cardsList = new Section({
@@ -30,7 +56,6 @@ const cardsList = new Section({
   renderer: (item) => {
     const handleCardClick = (itemName, itemLink) => {
       imgPopup.open(itemName, itemLink);
-      imgPopup.setEventListeners();
     };
     const card = new Card(item.name, item.link, '.card-template', handleCardClick).generateCard();
     cardsList.addItem(card);
@@ -49,32 +74,41 @@ const renderCard = (element, cardsContainer) => {
 
 // Edit form functions
 function renderEditForm() {
-  nameInput.value = name.textContent;
-  jobInput.value = job.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
 function submitEditForm (evt) {
     evt.preventDefault();
-    name.textContent = nameInput.value;
-    job.textContent = jobInput.value;
-    togglePopup(editPopup);
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+    editFormPopup.close();
 }
 
 //Add form functions
 function submitAddForm (evt) {
     evt.preventDefault();
-    renderCard ({name: titleInput.value, link: urlInput.value});
+    renderCard ({name: titleInput.value, link: urlInput.value}, ".card-template");
     addForm.reset();
-    togglePopup(addPopup);
+    addPopup.close();
 }
 
-//Edit form submit
+//Edit form submit,
 editPopup.addEventListener('submit', submitEditForm);
 
+editButton.addEventListener("click", () => {
+  const data = userInfo.getUserInfo();
+  nameInput.value = data.name;
+  jobInput.value = data.job;
+  editFormPopup.open();
+});
+
+addButton.addEventListener("click", () => {
+  addFormPopup.open();
+});
 
 //Add form submit
 addPopup.addEventListener('submit', submitAddForm);
-
 
 renderEditForm();
 new FormValidator(formConfig, editPopup).enableValidation();

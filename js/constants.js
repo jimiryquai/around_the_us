@@ -1,5 +1,3 @@
-import FormValidator from "./FormValidator.js";
-
 export const initialCards = [
   {
       name: "Yosemite Valley",
@@ -37,8 +35,12 @@ export const formConfig = ({
 
 //Profile inputs
 export const profile = document.querySelector('.profile');
-export const name = profile.querySelector('.profile__name');
-export const job = profile.querySelector('.profile__job');
+export const profileName = document.querySelector('.profile__name');
+export const profileJob = document.querySelector('.profile__job');
+
+// Buttons
+export const editButton = document.querySelector('.button_edit');
+export const addButton = document.querySelector('.button_add');
 
 // Popups
 export const editPopup = document.querySelector('.popup_type_edit');

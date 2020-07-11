@@ -39,7 +39,7 @@ editFormPopup.setEventListeners();
 // add Popup
 const handleAddCard = (imageTitle, imageLink) => {
   const handleCardClick = (imageTitle, imageLink) => {
-    addPopup.open(imageTitle, imageLink);
+    addFormPopup.open(imageTitle, imageLink);
   };
 
   const card = new Card(imageTitle, imageLink, '.card-template', handleCardClick).generateCard();

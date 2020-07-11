@@ -88,9 +88,9 @@ function submitEditForm (evt) {
 //Add form functions
 function submitAddForm (evt) {
     evt.preventDefault();
-    renderCard ({name: titleInput.value, link: urlInput.value}, ".card-template");
+    renderCard ({name: titleInput.value, link: urlInput.value});
     addForm.reset();
-    addPopup.close();
+    addFormPopup.close();
 }
 
 //Edit form submit,

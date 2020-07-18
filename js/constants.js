@@ -26,17 +26,13 @@ export const initialCards = [
 ];
 
 export const formConfig = ({
+  formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".button_submit",
   inactiveButtonClass: "button_disabled",
   inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active"
+  errorClass: "form__input-error_active",
 });
-
-//Profile inputs
-export const profile = document.querySelector('.profile');
-export const profileName = document.querySelector('.profile__name');
-export const profileJob = document.querySelector('.profile__job');
 
 // Buttons
 export const editButton = document.querySelector('.button_edit');
@@ -45,20 +41,7 @@ export const addButton = document.querySelector('.button_add');
 // Popups
 export const editPopup = document.querySelector('.popup_type_edit');
 export const addPopup = document.querySelector('.popup_type_add');
-export const popup = document.querySelector('.popup');
 
 //Form inputs
-export const titleInput = addPopup.querySelector('.form__input_title');
-export const urlInput = addPopup.querySelector('.form__input_url');
 export const nameInput = editPopup.querySelector('.form__input_name');
 export const jobInput = editPopup.querySelector('.form__input_job');
-
-//Add form variables
-
-export const addForm = addPopup.querySelector('.form_type_add');
-
-
-export const cardsContainer = '.photo-grid';
-
-export const popupCloseButton = document.querySelector('.popup__close');
-export const imgPopupClose = document.querySelector('.popup__close_type_img');

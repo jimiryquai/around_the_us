@@ -29,7 +29,7 @@ const renderCard = (element) => {
 const handleProfileEdit = ({ 'name-input': name, 'job-input': job }) => userInfo.setUserInfo({ name, job });
 
 // Add card
-const handleAddCard = (evt) => cardsList.addItem(renderCard(evt));
+const handleAddCard = ({ 'title-input': name, 'url-input': link }) => cardsList.addItem(renderCard({ name, link }));
 
 // Card clicks
 const handleCardClick = (data) => imgPopup.open(data);

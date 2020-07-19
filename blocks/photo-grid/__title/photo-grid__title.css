@@ -1,8 +1,0 @@
-.photo-grid__title {
-    text-overflow: ellipsis;
-    max-width: calc(80%);
-    overflow: hidden;
-    font-size: 1.5rem;
-    line-height: 1.8125rem;
-    margin: 0;
-}

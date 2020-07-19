@@ -1,9 +1,9 @@
-# Project 6: Around The U.S. (Part Three)
+# Project 8: Around The U.S. (Part V)
 =======
 
 ### Overview
 
-Around The U.S. (Part Three) is the sixth project in the Practicum by Yandex Professional Web Developer Certificate Program.
+Around The U.S. (Part V) is the eigth project in the Practicum by Yandex Professional Web Developer Certificate Program.
 
 
 ### Description
@@ -12,9 +12,11 @@ This project makes use of the following technologies:
 
 1. HTML5
 2. CSS3 (including BEM naming conventions and file structure)
-3. JavaScript
+3. Object-Oriented JavaScript
+4. WebPack
 
-The website is fully resonsive and it's appearance corresponds (within a margin of error of 30px) with these design files[Project 4](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1).
+The website is fully resonsive and it's appearance corresponds (within a margin of error of 30px) with these design files:
+[Project 4](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1).
 [Project 5](https://www.figma.com/file/avLHzpJw2dmU2NaDATZ6CX/Sprint-5%3A-Around-The-U.S.-%2F-desktop-%2B-mobile?node-id=0%3A1).
 [Project 6](https://www.figma.com/file/KUbYgXnYElfzxCbcrlsOCE/Sprint-6%3A-Around-The-U.S.?node-id=0%3A1).
 

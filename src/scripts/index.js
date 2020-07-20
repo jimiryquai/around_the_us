@@ -1,3 +1,6 @@
+import '../pages/index.css';// Styles
+
+//Constants
 import {
   editPopup,
   addPopup,
@@ -10,14 +13,13 @@ import {
 }
 from "./constants.js";
 
+// Classes
 import Card from "./Card.js";
 import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import FormValidator from "./FormValidator.js";
 import UserInfo from "./UserInfo.js";
-
-import '../pages/index.css';
 
 // Render new cards
 const renderCard = (element) => {
@@ -35,7 +37,7 @@ const handleAddCard = ({ 'title-input': name, 'url-input': link }) => cardsList.
 
 // Card clicks
 const handleCardClick = (data) => imgPopup.open(data);
-//End Handlers
+
 
 // Class instances
 const userInfo = new UserInfo({
@@ -46,6 +48,7 @@ const userInfo = new UserInfo({
 const imgPopup = new PopupWithImage(".popup_type_image");
 const editFormPopup = new PopupWithForm(".popup_type_edit", handleProfileEdit);
 const addFormPopup = new PopupWithForm(".popup_type_add", handleAddCard);
+
 new FormValidator(formConfig, editPopup).enableValidation();
 new FormValidator(formConfig, addPopup).enableValidation();
 

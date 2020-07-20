@@ -40,16 +40,17 @@ class Card {
 
   _handleButtonTrashClick() {
     this._element.remove();
+    this._element = null;
   }
 
 
   generateCard() {
-
     this._element = this._getTemplate();
     this._setEventListeners(); // call the _setEventListeners
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
+    const cardImage = this._element.querySelector(".card__image");
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
 
     return this._element;
   }

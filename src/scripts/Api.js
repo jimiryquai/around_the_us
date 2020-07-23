@@ -24,6 +24,7 @@ class Api {
   }
 
   addCard({ name, link }) {
+    debugger
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
       method: "POST",
@@ -34,7 +35,6 @@ class Api {
     }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => console.log(err));
   }
-
 }
 
 export default Api;

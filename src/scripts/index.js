@@ -22,33 +22,16 @@ import FormValidator from "./FormValidator.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./Api.js";
 
-// Render new cards
-const renderCard = (element) => {
-  const card = new Card({ ...element, popup: PopupWithImage, handleCardClick},
-  '.card-template');
-    return card.generateCard();
-}
-
-// Handlers
-
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = renderCard(item);
-    cardsList.addItem(card);
-  },
-},
-'.photo-grid'
-);
-
-const handleProfileEdit = ({ 'name-input': name, 'job-input': job }) => userInfo.setUserInfo({ name, job });
-const handleAddCard = ({ 'title-input': name, 'url-input': link }) => cardsList.addItem(renderCard({ name, link }));
-const handleCardClick = (data) => imgPopup.open(data);
-
 // Class instances
 const imgPopup = new PopupWithImage(".popup_type_image");
-const editFormPopup = new PopupWithForm({ popupSelector: ".popup_type_edit", handleProfileEdit });
-const addFormPopup = new PopupWithForm({ popupSelector: ".popup_type_add", handleAddCard });
+
+const userInfoPopup = new PopupWithForm({
+  popupSelector: ".popup_type_edit",
+  handleFormSubmit: ({
+    'name-input': name,
+    'job-input': job
+  }) => userInfo.setUserInfo({ name, job })
+});
 
 new FormValidator(formConfig, editPopup).enableValidation();
 new FormValidator(formConfig, addPopup).enableValidation();
@@ -71,9 +54,14 @@ api.getAppInfo()
     //Create Section and Initial Cards
     const cardsList = new Section({
       items: initialCards,
-      renderer: (item) => {
-        const card = renderCard(item);
-        cardsList.addItem(card);
+      renderer: (element) => {
+        const card = new Card({ ...element,
+          handleCardClick: (data) =>
+          imgPopup.open(data)
+        },
+        '.card-template'
+        );
+        cardsList.addItem(card.generateCard());
       },
     },
     '.photo-grid'
@@ -81,20 +69,41 @@ api.getAppInfo()
   // Render the initial cards
   cardsList.renderItems();
   // Set user info
-  userInfo.setUserInfo({ name: userInfoData.name, job: userInfoData.about })
+  userInfo.setUserInfo({ name: userInfoData.name, job: userInfoData.about });
+
+  const newCardPopup = new PopupWithForm({
+    popupSelector: ".popup_type_add",
+    handleFormSubmit: ({
+      'title-input': name,
+      'url-input': link
+    }) => {
+    api.addCard({ name, link })
+    .then(res => {
+        const card = new Card({ name, link,
+          handleCardClick: (data) =>
+          imgPopup.open(data)
+        },
+        '.card-template'
+      );
+    cardsList.addItem(card.generateCard());
+    })
+    // .catch(() => console.log("Error during rendering"))
+    }
+  });
+  newCardPopup.setEventListeners();
+  addButton.addEventListener("click", () => newCardPopup.open());
 })
 
 .catch(console.log)
+
 
 // Event Listeners
 editButton.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
   nameInput.value = data.name;
   jobInput.value = data.job;
-  editFormPopup.open();
+  userInfoPopup.open();
 });
 
-editFormPopup.setEventListeners();
-addButton.addEventListener("click", () => addFormPopup.open());
-addFormPopup.setEventListeners();
+userInfoPopup.setEventListeners();
 imgPopup.setEventListeners();

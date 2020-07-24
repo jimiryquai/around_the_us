@@ -6,7 +6,6 @@ import {
   addPopup,
   nameInput,
   jobInput,
-  initialCards,
   formConfig,
   editButton,
   addButton
@@ -21,6 +20,7 @@ import PopupWithImage from "./PopupWithImage.js";
 import FormValidator from "./FormValidator.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./Api.js";
+import { data } from 'autoprefixer';
 
 // Class instances
 const imgPopup = new PopupWithImage(".popup_type_image");
@@ -54,10 +54,17 @@ api.getAppInfo()
     //Create Section and Initial Cards
     const cardsList = new Section({
       items: initialCards,
-      renderer: (element) => {
-        const card = new Card({ ...element,
-          handleCardClick: (data) =>
-          imgPopup.open(data)
+      renderer: (data) => {
+        const card = new Card({ data,
+          handleCardClick: () =>
+          imgPopup.open(data),
+          handleCardDelete: () => {
+            api.removeCard(card.id())
+            .then(res => {
+              card.removeCard();
+              console.log('Successfully deleted card');
+            })
+          }
         },
         '.card-template'
         );
@@ -66,6 +73,8 @@ api.getAppInfo()
     },
     '.photo-grid'
   );
+
+  console.log('Cards List', cardsList); //remove this
   // Render the initial cards
   cardsList.renderItems();
   // Set user info
@@ -79,9 +88,16 @@ api.getAppInfo()
     }) => {
     api.addCard({ name, link })
     .then(res => {
-        const card = new Card({ name, link,
-          handleCardClick: (data) =>
-          imgPopup.open(data)
+        const card = new Card({ data,
+          handleCardClick: () =>
+          imgPopup.open(data),
+          handleCardDelete: (card) => {
+            api.removeCard(card.id())
+            .then(res => {
+              card.removeCard();
+              console.log('Successfully deleted card');
+            })
+          }
         },
         '.card-template'
       );

@@ -24,7 +24,6 @@ class Api {
   }
 
   addCard({ name, link }) {
-    debugger
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
       method: "POST",
@@ -32,6 +31,14 @@ class Api {
         name,
         link
       })
+    }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => console.log(err));
+  }
+
+  removeCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/` + cardId, {
+      headers: this.headers,
+      method: "DELETE"
     }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => console.log(err));
   }
@@ -59,6 +66,4 @@ export default Api;
 // changeCardLikeStatus(cardId, like) {}
 
 // PATCH https://around.nomoreparties.co/v1/group-1/users/me/avatar
-// setUserAvatar({ avatar }) // Change job for about
-
-// getAppInfo()
+// setUserAvatar({ avatar }) // Change avatar for about

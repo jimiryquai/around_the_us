@@ -2,10 +2,13 @@ class Card {
   constructor({ data, handleCardClick, handleCardDelete }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._id = data._id;
+    this._owner = data.owner._id;
+    this._likes = data.likes;
+    this._user = data.likes._id;
     this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
     this._handleCardDelete = handleCardDelete;
-    this._id = data._id;
   }
 
   id() {

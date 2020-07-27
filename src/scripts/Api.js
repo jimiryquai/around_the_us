@@ -71,14 +71,13 @@ class Api {
     .catch((err) => console.log(err));
   }
 
-  changeCardLikeStatus(cardId, like) {
-    
+  changeCardLikeStatus({ cardId, like} ) {
+    return fetch(`${this.baseUrl}/cards/likes/` + cardId, {
+      headers: this.headers,
+      method: isLiked ? "PUT" : "DELETE"
+    }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => console.log(err));
   }
 }
 
 export default Api;
-
-
-// PUT https://around.nomoreparties.co/v1/group-1/cards/likes/CardId
-// DELETE https://around.nomoreparties.co/v1/group-1/cards/likes/CardId
-// changeCardLikeStatus(cardId, like) {}

@@ -41,6 +41,7 @@ export const addButton = document.querySelector('.button_add');
 // Popups
 export const editPopup = document.querySelector('.popup_type_edit');
 export const addPopup = document.querySelector('.popup_type_add');
+export const deletePopup = document.querySelector('.popup_type_delete');
 
 //Form inputs
 export const nameInput = editPopup.querySelector('.form__input_name');

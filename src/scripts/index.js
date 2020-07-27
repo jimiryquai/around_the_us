@@ -4,6 +4,7 @@ import '../pages/index.css';// Styles
 import {
   editPopup,
   addPopup,
+  deletePopup,
   nameInput,
   jobInput,
   formConfig,
@@ -115,9 +116,6 @@ api.getAppInfo()
   newCardPopup.setEventListeners();
   addButton.addEventListener("click", () => newCardPopup.open());
 })
-
-.catch(console.log)
-
 
 // Event Listeners
 editButton.addEventListener("click", () => {

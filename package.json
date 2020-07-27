@@ -37,7 +37,7 @@
     "rimraf": "^3.0.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-devserver": "0.0.6"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "corejs": "^1.0.0"

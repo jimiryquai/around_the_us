@@ -1,9 +1,15 @@
 class Card {
-  constructor({ name, link, handleCardClick }, cardSelector) {
-    this._name = name;
-    this._link = link;
+  constructor({ data, handleCardClick, handleCardDelete }, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
     this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
+    this._handleCardDelete = handleCardDelete;
+    this._id = data._id;
+  }
+
+  id() {
+    return this._id;
   }
 
   _getTemplate() {
@@ -30,19 +36,13 @@ class Card {
     //trash button clicks
     this._element.querySelector(".button_trash")
     .addEventListener("click", () =>
-      this._handleButtonTrashClick());
+      this._handleCardDelete(this));
     }
 
   _handleButtonHeartClick() {
     this._element.querySelector(".button_heart")
     .classList.toggle("button_heart_liked");
   }
-
-  _handleButtonTrashClick() {
-    this._element.remove();
-    this._element = null;
-  }
-
 
   generateCard() {
     this._element = this._getTemplate();
@@ -53,6 +53,11 @@ class Card {
     cardImage.alt = this._name;
 
     return this._element;
+  }
+
+  removeCard() {
+    this._element.remove();
+    this._element = null;
   }
 }
 

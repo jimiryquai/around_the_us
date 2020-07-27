@@ -10,10 +10,6 @@ class PopupWithImage extends Popup
     super.open();
   }
 
-  close() {
-    super.close();
-  }
-
 }
 
 export default PopupWithImage;

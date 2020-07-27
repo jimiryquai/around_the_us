@@ -70,6 +70,10 @@ class Api {
     }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => console.log(err));
   }
+
+  changeCardLikeStatus(cardId, like) {
+    
+  }
 }
 
 export default Api;

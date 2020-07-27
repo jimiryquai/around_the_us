@@ -29,8 +29,14 @@ const userInfoPopup = new PopupWithForm({
   popupSelector: ".popup_type_edit",
   handleFormSubmit: ({
     'name-input': name,
-    'job-input': job
-  }) => userInfo.setUserInfo({ name, job })
+    'job-input': about
+  }) => {
+    api.setUserInfo({ name, about })
+    .then(res => {
+      userInfo.setUserInfo({ name, about });
+    })
+    .catch(() => console.log("Error during rendering"))
+  }
 });
 
 new FormValidator(formConfig, editPopup).enableValidation();
@@ -78,7 +84,7 @@ api.getAppInfo()
   // Render the initial cards
   cardsList.renderItems();
   // Set user info
-  userInfo.setUserInfo({ name: userInfoData.name, job: userInfoData.about });
+  userInfo.setUserInfo({ name: userInfoData.name, about: userInfoData.about });
 
   const newCardPopup = new PopupWithForm({
     popupSelector: ".popup_type_add",
@@ -103,7 +109,7 @@ api.getAppInfo()
       );
     cardsList.addItem(card.generateCard());
     })
-    // .catch(() => console.log("Error during rendering"))
+    .catch(() => console.log("Error during rendering"))
     }
   });
   newCardPopup.setEventListeners();
@@ -117,7 +123,7 @@ api.getAppInfo()
 editButton.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
   nameInput.value = data.name;
-  jobInput.value = data.job;
+  jobInput.value = data.about;
   userInfoPopup.open();
 });
 

@@ -6,14 +6,18 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cards`, { headers: this.headers })
+    return fetch(`${this.baseUrl}/cards`, {
+      headers: this.headers
+    })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
       .catch((err) => console.log(err));
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, { headers: this.headers })
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers
+    })
     .then((res) =>
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => console.log(err));
@@ -42,28 +46,35 @@ class Api {
     }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     .catch((err) => console.log(err));
   }
+
+  setUserInfo({ name, about }) {
+    debugger
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+      method: "PATCH",
+      body: JSON.stringify({
+        name,
+        about
+      })
+    }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => console.log(err));
+  }
+
+  setUserAvatar({ avatar }) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      headers: this.headers,
+      method: "PATCH",
+      body: JSON.stringify({
+        avatar
+      })
+    }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => console.log(err));
+  }
 }
 
 export default Api;
 
-// GET https://around.nomoreparties.co/v1/group-1/users/me
-// getUserInfo() {}
-
-// GET https://around.nomoreparties.co/v1/group-1/cards
-// getInitialCards() {}
-
-// PATCH https://around.nomoreparties.co/v1/group-1/users/me
-// setUserInfo({ name, job }) // Change job for about
-
-// POST https://around.nomoreparties.co/v1/group-1/cards
-// addCard({ name, link })
-
-// DELETE https://around.nomoreparties.co/v1/group-1/cards/CardId
-// removeCard(cardId) {}
 
 // PUT https://around.nomoreparties.co/v1/group-1/cards/likes/CardId
 // DELETE https://around.nomoreparties.co/v1/group-1/cards/likes/CardId
 // changeCardLikeStatus(cardId, like) {}
-
-// PATCH https://around.nomoreparties.co/v1/group-1/users/me/avatar
-// setUserAvatar({ avatar }) // Change avatar for about

@@ -45,7 +45,8 @@ new FormValidator(formConfig, addPopup).enableValidation();
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
-  jobSelector: ".profile__job"
+  jobSelector: ".profile__job",
+  avatarSelector: ".profile__avatar"
 });
 
 const api = new Api({
@@ -65,12 +66,19 @@ api.getAppInfo()
         const card = new Card({ data,
           handleCardClick: () =>
           imgPopup.open(data),
-          handleCardDelete: () => {
-            api.removeCard(card.id())
-            .then(res => {
-              card.removeCard();
-              console.log('Successfully deleted card');
-            })
+          handleDeleteClick: () => {
+            const deleteCardPopup = new PopupWithForm({
+              popupSelector: ".popup_type_delete",
+              handleFormSubmit: () => {
+                deleteCardPopup.open(card.id())
+                api.removeCard(card.id())
+                .then(() => {
+                  card.removeCard();
+                  console.log('Successfully deleted card');
+                })
+              },
+              submitButtonText: "Deleting...",
+            });
           }
         },
         '.card-template'
@@ -98,10 +106,22 @@ api.getAppInfo()
         const card = new Card({ data,
           handleCardClick: () =>
           imgPopup.open(data),
-          handleCardDelete: (card) => {
+          handleDeleteClick: (card) => {
+            const deleteCardPopup = new PopupWithForm({
+              popupSelector: ".popup_type_delete",
+              handleFormSubmit: {
+                'title-input': name,
+                'url-input': link
+              },
+              submitButtonText: "Deleting...",
+            });
+            deleteCardPopup.open(card.id())
+            deleteCardPopup.setEventListeners();
             api.removeCard(card.id())
-            .then(res => {
+            .then(() => {
               card.removeCard();
+              deleteCardPopup.close();
+              deleteCardPopup.renderLoading(false);
               console.log('Successfully deleted card');
             })
           }
@@ -111,11 +131,13 @@ api.getAppInfo()
     cardsList.addItem(card.generateCard());
     })
     .catch(() => console.log("Error during rendering"))
-    }
+    },
+    submitButtonText: "Saving.."
   });
   newCardPopup.setEventListeners();
   addButton.addEventListener("click", () => newCardPopup.open());
 })
+
 
 // Event Listeners
 editButton.addEventListener("click", () => {
@@ -127,3 +149,4 @@ editButton.addEventListener("click", () => {
 
 userInfoPopup.setEventListeners();
 imgPopup.setEventListeners();
+

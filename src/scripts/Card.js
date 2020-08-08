@@ -1,14 +1,16 @@
 class Card {
-  constructor({ data, handleCardClick, handleCardDelete }, cardSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick  }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
     this._owner = data.owner._id;
     this._likes = data.likes;
     this._user = data.likes._id;
+    this._totalLikes = data.likes.length;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
     this._cardSelector = cardSelector;
-    this._handleCardDelete = handleCardDelete;
   }
 
   id() {
@@ -39,7 +41,7 @@ class Card {
     //trash button clicks
     this._element.querySelector(".button_trash")
     .addEventListener("click", () =>
-      this._handleCardDelete(this));
+      this._handleDeleteClick(this.id()));
     }
 
   _handleButtonHeartClick() {

@@ -70,7 +70,6 @@ api.getAppInfo()
             const deleteCardPopup = new PopupWithForm({
               popupSelector: ".popup_type_delete",
               handleFormSubmit: () => {
-                deleteCardPopup.open(card.id())
                 api.removeCard(card.id())
                 .then(() => {
                   card.removeCard();
@@ -79,6 +78,8 @@ api.getAppInfo()
               },
               submitButtonText: "Deleting...",
             });
+            deleteCardPopup.open(card.id())
+            deleteCardPopup.setEventListeners();
           }
         },
         '.card-template'
@@ -121,7 +122,6 @@ api.getAppInfo()
             .then(() => {
               card.removeCard();
               deleteCardPopup.close();
-              deleteCardPopup.renderLoading(false);
               console.log('Successfully deleted card');
             })
           }

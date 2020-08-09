@@ -1,6 +1,7 @@
 @import url('./_type/popup__modal_type_image.css');
 @import url('./_type/popup__modal_type_form.css');
 @import url('./_type/popup__modal_type_delete.css');
+@import url('./_type/popup__modal_type_avatar.css');
 
 .popup__modal {
     position: relative;

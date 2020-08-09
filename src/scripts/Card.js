@@ -1,15 +1,16 @@
 class Card {
-  constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick  }, cardSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick, userId  }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
     this._owner = data.owner._id;
     this._likes = data.likes;
-    this._user = data.likes._id;
     this._totalLikes = data.likes.length;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
+    this._user = userId
+
     this._cardSelector = cardSelector;
   }
 
@@ -24,6 +25,12 @@ class Card {
       .querySelector(".card")
       .cloneNode(true);
     return cardElement;
+  }
+
+  _isLiked(likes) {
+    this.likes = likes;
+    this._element.querySelector('.card__likes').textContent = this._totalLikes;
+    this._element.querySelector('.button_heart').classList.toggle('button_heart_liked');
   }
 
   _setEventListeners() {

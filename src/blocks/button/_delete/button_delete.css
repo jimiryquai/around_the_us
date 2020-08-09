@@ -1,0 +1,11 @@
+.button_delete {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  border-color: transparent;
+  width: 83%;
+  max-width: 358px;
+  height: 50px;
+  margin-top: .5rem;
+  font-size: .875rem;
+  line-height: 1.0625rem;
+}

@@ -1,11 +1,17 @@
 class Card {
-  constructor({ data, handleCardClick, handleCardDelete }, cardSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick, userId  }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._handleCardClick = handleCardClick;
-    this._cardSelector = cardSelector;
-    this._handleCardDelete = handleCardDelete;
     this._id = data._id;
+    this._owner = data.owner._id;
+    this._likes = data.likes;
+    this._totalLikes = data.likes.length;
+    this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
+    this._user = userId
+
+    this._cardSelector = cardSelector;
   }
 
   id() {
@@ -19,6 +25,12 @@ class Card {
       .querySelector(".card")
       .cloneNode(true);
     return cardElement;
+  }
+
+  _isLiked(likes) {
+    this.likes = likes;
+    this._element.querySelector('.card__likes').textContent = this._totalLikes;
+    this._element.querySelector('.button_heart').classList.toggle('button_heart_liked');
   }
 
   _setEventListeners() {
@@ -36,7 +48,7 @@ class Card {
     //trash button clicks
     this._element.querySelector(".button_trash")
     .addEventListener("click", () =>
-      this._handleCardDelete(this));
+      this._handleDeleteClick(this.id()));
     }
 
   _handleButtonHeartClick() {

@@ -28,6 +28,11 @@ class PopupWithForm extends Popup {
     this._form.reset();
     super.close();
   }
+    // function the changes default _handleFormSubmit wich was passed
+  // inside on the new PopupWithForm  step
+  setSubmitHandler(newHandler) {
+    this._handleFormSubmit = newHandler;
+  } 
 }
 
 export default PopupWithForm;

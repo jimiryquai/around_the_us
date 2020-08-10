@@ -93,10 +93,6 @@ const api = new Api({
   },
 });
 
-// Handlers
-
-
-
 api.getAppInfo()
 .then(([initialCards, userInfoData]) => {
   const userId = userInfoData._id;
@@ -107,27 +103,26 @@ api.getAppInfo()
         const card = new Card({ data,
           handleCardClick: () =>
           imgPopup.open(data),
-          handleDeleteClick: () => {
-            deleteCardPopup.open(card.id())
-            deleteCardPopup.setEventListeners();
+          handleDeleteClick: (card) => {
+            deleteCardPopup.open();
+            deleteCardPopup.setSubmitHandler(() => {
+              api.removeCard(card.id())
+                .then(res => {
+                  card.removeCard();
+                  deleteCardPopup.close();
+                })
+            });
           },
-          handleLikeClick: ({ id }) => {
-            if ({ like }) {
-              api.addLike({
-                cardId: id,
-                like: true
-              }).then(res => {
-                card.addLike({ id })
-              })
+          handleLikeClick: (id) => {
+            if (card.likeButton.classList.contains('button_heart_liked')) {
+              card.likeButton.classList.remove('button_heart_liked');
+              api.removeLike(id)
+              .then(res => card.likeCount(res.likes.length))
             } else {
-              api.removeLike({
-                cardId: id,
-                like: false
-              }).then(res => {
-                card.removeLike({ id })
-              })
-            }
-          },
+              card.likeButton.classList.add('button_heart_liked');
+              api.addLike(id)
+              .then(res => card.likeCount(res.likes.length))
+            }},
           userId
         },
         '.card-template'
@@ -149,51 +144,45 @@ api.getAppInfo()
       'title-input': name,
       'url-input': link
     }) => {
-    api.addCard({ name, link })
-    .then(res => {
-        const card = new Card({ data,
-          handleCardClick: () =>
-          imgPopup.open(data),
-          handleDeleteClick: (card) => {
-            deleteCardPopup.open(card.id())
-            deleteCardPopup.setEventListeners();
-            api.removeCard(card.id())
-            .then(() => {
-              card.removeCard();
-              deleteCardPopup.close();
-            })
-          },
-          handleLikeClick: ({ id }) => {
-            if ({ like }) {
-              api.addLike({
-                cardId: id,
-                like: true
-              }).then(res => {
-                card.addLike({ id })
-              })
-            } else {
-              api.removeLike({
-                cardId: id,
-                like: false
-              }).then(res => {
-                card.removeLike({ id })
-              })
-            }
-          },
-          userId
-        },
-        '.card-template'
-      );
-    cardsList.addItem(card.generateCard(userID));
-    })
-    .catch(() => console.log("Error during rendering"))
+        api.addCard({ name, link })
+          .then(res => {
+            const card = new Card({
+              data: res,
+              handleCardClick: () =>
+                imgPopup.open(data),
+              handleDeleteClick: (card) => {
+                deleteCardPopup.open();
+                deleteCardPopup.setSubmitHandler(() => {
+                  api.removeCard(card.id())
+                    .then(() => {
+                      card.removeCard();
+                      deleteCardPopup.close();
+                    })
+                });
+              },
+              handleLikeClick: (id) => {
+                if (newCard.likeButton.classList.contains('button_heart_liked')) {
+                  newCard.likeButton.classList.remove('button_heart_liked');
+                  api.removeLike(id)
+                  .then(res => newCard.likeCount(res.likes.length))
+                } else {
+                  newCard.likeButton.classList.add('button_heart_liked');
+                  api.addLike(id)
+                  .then(res => newCard.likeCount(res.likes.length))
+                }},
+              userId
+            },
+          '.card-template'
+          );
+          cardsList.addItem(card.generateCard(userID));
+        })
+      .catch(() => console.log("Error during rendering"))
     },
     submitButtonText: "Saving.."
   });
   newCardPopup.setEventListeners();
   addButton.addEventListener("click", () => newCardPopup.open());
 })
-
 
 // Add/Set Event Listeners
 editButton.addEventListener("click", () => {
@@ -208,5 +197,4 @@ avatarButton.addEventListener('click', () => editAvatarPopup.open());
 userInfoPopup.setEventListeners();
 imgPopup.setEventListeners();
 editAvatarPopup.setEventListeners();
-
-
+deleteCardPopup.setEventListeners();

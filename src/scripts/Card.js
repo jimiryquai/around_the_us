@@ -27,12 +27,6 @@ class Card {
     return cardElement;
   }
 
-  _isLiked(likes) {
-    this.likes = likes;
-    this._element.querySelector('.card__likes').textContent = this._totalLikes;
-    this._element.querySelector('.button_heart').classList.toggle('button_heart_liked');
-  }
-
   _setEventListeners() {
     this._element.querySelector(".card__image")
     .addEventListener ('click', () =>
@@ -52,17 +46,51 @@ class Card {
     }
 
   _handleButtonHeartClick() {
-    this._element.querySelector(".button_heart")
-    .classList.toggle("button_heart_liked");
+    const buttonHeart = this._element.querySelector(".button_heart");
+      //check if heart and like should be added or removed.
+      if (buttonHeart.classList.contains("button_heart_liked")) {
+        this._cardClicked = true;
+      } else {
+        this._cardClicked = false;
+      }
+
+      if (this._cardClicked) {
+        buttonHeart.classList.toggle("button_heart_liked");
+        this.removeLike();
+        this._handleLikeClick({
+          id: this._id,
+        })
+        this._cardClicked = false;
+      } else {
+        buttonHeart.classList.toggle("button_heart_liked");
+        this.addLike();
+        this._handleLikeClick({
+          id: this._id,
+        })
+        this._cardClicked = true;
+      }
+  }
+
+  addLike() {
+    this._element.querySelector('.card__likes').textContent = this._totalLikes;
+  }
+  removeLike() {
+    this._element.querySelector('.card__likes').textContent = this._totalLikes;
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners(); // call the _setEventListeners
+
+    if (this._owner !== this._user) {
+      this._element.querySelector('.button_trash').style.display = "none";
+    }
+
     this._element.querySelector(".card__title").textContent = this._name;
     const cardImage = this._element.querySelector(".card__image");
     cardImage.src = this._link;
     cardImage.alt = this._name;
+    this._element.querySelector('.card__likes').textContent = this._totalLikes;
 
     return this._element;
   }

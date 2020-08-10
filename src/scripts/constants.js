@@ -40,6 +40,7 @@ export const formConfig = ({
 export const editButton = document.querySelector('.button_edit');
 export const addButton = document.querySelector('.button_add');
 export const avatarButton = document.querySelector('.button_avatar');
+export const deleteButton = document.querySelector('.button_delete');
 
 // Popups
 export const editPopup = document.querySelector('.popup_type_edit');

@@ -71,12 +71,20 @@ class Api {
     .catch((err) => console.log(err));
   }
 
-  changeCardLikeStatus({ cardId, like }) {
+  addLike(cardId) {
     return fetch(`${this.baseUrl}/cards/likes/` + cardId, {
-      headers: this.headers,
-      method: isLiked ? "PUT" : "DELETE"
-    }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-    .catch((err) => console.log(err));
+      headers: this._headers,
+      method: "PUT"
+      }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch((err) => console.log(err));
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/` + cardId, {
+      headers: this._headers,
+      method: "DELETE"
+      }).then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch((err) => console.log(err));
   }
 }
 
